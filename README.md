@@ -1,6 +1,6 @@
 # Tech-Forge Development
 ## Team Members
-1. Hafiz Adams
+1. _Hafiz Adams_ :bust_in_silhouette:
    - UI/UX design
 2. **Mohammed Siddiqui** 📄
    - _Team Manager_
