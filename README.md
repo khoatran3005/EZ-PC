@@ -2,11 +2,11 @@
 ## Team Members
 1. Hafiz Adams
    - UI/UX design
-2. Mohammed Siddiqui
-   - Team Manager
-   - Documentation Lead
+2. **Mohammed Siddiqui** 📄
+   - _Team Manager_
 
-[Team Github Repo](https://github.com/khoatran3005/EZ-PC.git)
+   - Documentation Lead
+     [Team Github Repo](https://github.com/khoatran3005/EZ-PC.git)
 
 [Team Discord Server](https://discord.gg/8jT6CW6sgB)
 
