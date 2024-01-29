@@ -1,4 +1,4 @@
-# EZ-PC
+# Tech Forge Development
 ## Team Members
 1. Hafiz Adams
    - UI/UX design
