@@ -4,7 +4,6 @@
    - UI/UX design
 2. **Mohammed Siddiqui** 📄
    - _Team Manager_
-
    - Documentation Lead
 3. Khoa Tran
    - Data modeler
