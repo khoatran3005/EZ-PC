@@ -6,7 +6,13 @@
    - _Team Manager_
 
    - Documentation Lead
-     [Team Github Repo](https://github.com/khoatran3005/EZ-PC.git)
+3. Khoa Tran
+   - Data modeler
+4. Rahul Biswas
+   - Testing Lead
+   - Lead Programmer
+  
+[Team Github Repo](https://github.com/khoatran3005/EZ-PC.git)
 
 [Team Discord Server](https://discord.gg/8jT6CW6sgB)
 
