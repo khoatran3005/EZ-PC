@@ -7,6 +7,8 @@
    - Documentation Lead
 3. Khoa Tran
    - Data modeler
+4. Rahul Biswas
+   - Testing Lead
   
 [Team Github Repo](https://github.com/khoatran3005/EZ-PC.git)
 
