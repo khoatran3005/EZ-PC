@@ -1,0 +1,55 @@
+body {
+    margin: 100px;
+}
+
+nav {
+    margin-top: 0;
+    text-align: center;
+    padding: 30px;
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    justify-content: space-between;
+}
+
+nav a {
+    color: #4D4D4D;
+    text-decoration: none;
+    margin: 0 15px;
+    margin-top: -4px;
+    float: right;
+    font-weight: 100;
+}
+
+#logo {
+    float: left;
+    margin-left: 120px;
+    width: auto;
+}
+
+#logo img {
+    width: 150px;
+    /* Adjust the width as needed */
+    height: auto;
+    margin-right: 10px;
+    /* Add margin for spacing */
+    margin-top: -25px;
+}
+
+#HLS {
+    margin-right: 120px;
+}
+
+#signup-btn {
+    float: right;
+    margin-top: -10px;
+    font-weight: 100;
+}
+
+.btn {
+    background-color: #3A75AC;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
