@@ -7,7 +7,7 @@ const Homepage = () => {
             <div id="message">
                 <p class="first">Making it easy <span>to find a PC.</span></p>
                 <p class="second">We are happy to help you find a PC!</p>
-                <button id="con-btn" class="btn">Continue as guest</button>
+                <button id="con-btn" class="btn"><Link to="/info" className='nav-link'>Continue as guest</Link></button>
 
                 <img id="ill" src={ill} alt="illustration" />
             </div>

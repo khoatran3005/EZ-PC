@@ -11,6 +11,7 @@ import {
   Route,
 } from "react-router-dom";
 import Homepage from './components/Home/Homepage';
+import Info from './components/Info';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path="/" element={<Homepage />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="/info" component={Info} />
       </Route>
     </Routes>
   </BrowserRouter>
