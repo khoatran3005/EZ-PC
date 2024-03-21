@@ -1,5 +1,6 @@
 import ill from '../../assets/ill.png'
 import './Homepage.scss'
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
     return (
