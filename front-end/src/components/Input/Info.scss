@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Inter');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
   
   #input{
     margin-top: 150px;
@@ -8,6 +8,14 @@
     margin-left: 150px;
   
   }
+  .input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+  }
+  
   
   #select {
     font-family: 'Montserrat', sans-serif;
@@ -16,18 +24,24 @@
     border: none;
     border-radius: 5px;
   }
-  #head{
-    font-weight: bold;
+  .head{
+     /* Use Poppins font */
+     font-weight: bold;
+    font-size: 1.1em;
+
+  }
+  #test{
+    margin-top: 10%;
   }
   .drop{
     color:#666666;
   }
-  #kind{
-    font-family: Poppins;
-    font-size: 32px;
-    color:#000000;
-    font-weight: bold;
+  .kind {
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    font-weight: bold; /* Make the text bold */
+    font-size: 1.2em; /* Set the font size to 1.2 times the default size */
   }
+  
 
   .price-input {
     width: 100%;
@@ -68,15 +82,16 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .slider {
-    height: 5px;
+    height: 15px;
     width: 50%;
     border-radius: 5px;
     background: #ddd;
     position: relative;
+    top: -8px;
 }
 
 .slider .progress {
-    height: 5px;
+    height: 15px;
     position: absolute;
     left: 0;
     right: 0;
@@ -90,7 +105,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .range-input input {
     position: absolute;
-    top: -5px;
+    top: -15px;
     height: 5px;
     width: 50%;
     background: none;
@@ -116,10 +131,30 @@ input[type="range"]::-moz-range-thumb {
     margin-top: -6px; /* Adjusted to center the thumb vertically */
 }
 
-/* .container {
-    background-image: url("../../assets/ill.png");
+.container {
+  align-items: flex-end;
+  position: relative; /* has to be position relative for left to work, or you could just do margin-left: -50px; too */
+  left: -120px;
+  display: flex;
+  top: -120px;
+  
+    /* background-image: url("../../assets/ill.png");
     background-size: cover;
     background-position: center;
-    opacity: 10%; /* Adjust the opacity value as needed */
-    /* Add any other styles you want for the background container
-  }  */
+    opacity: 10%; Adjust the opacity value as needed */
+
+  } 
+ 
+  #infoimg {
+    position: absolute;
+    top: 0;
+    right: -75px;
+    width: 60%; /* Set the width to cover the right half of the screen */
+    height: 120%; /* Set the height to cover the full height of the screen */
+   /* Ensure the image covers the entire space */
+    z-index: -1; /* Ensure the image is behind other content */
+    background-image: url('../../assets/infoimg.jpg'); /* Set background image */
+     background-size: cover; /* Ensure the image covers the entire space */
+   background-position: right;
+  }
+  
