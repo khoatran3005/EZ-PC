@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import './Register.scss'; // Make sure you have the corresponding SCSS file for styling
+import './Register.scss'; 
 
 const Register = () => {
-    // State for input fields
+   
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [retypePassword, setRetypePassword] = useState('');
     const [termsAgreed, setTermsAgreed] = useState(false);
 
-    // Event handlers
+   
     const handleNameChange = (event) => setName(event.target.value);
     const handleEmailChange = (event) => setEmail(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value);
@@ -19,9 +19,9 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        // Add validation for password matching and possibly other checks
+       
 
-        // If validation passes, proceed to send the data
+        
         const userData = {
             name: name,
             email: email,
@@ -29,8 +29,8 @@ const Register = () => {
             termsAgreed: termsAgreed
         };
 
-        // Replace 'YOUR_BACKEND_ENDPOINT' with the actual endpoint to your backend service
-        fetch('YOUR_BACKEND_ENDPOINT', {
+
+        fetch('backend_endpoint', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,10 +39,10 @@ const Register = () => {
         })
         .then(response => {
             if (response.ok) {
-                // Handle successful registration
+               
                 console.log('User registered successfully');
             } else {
-                // Handle failed registration
+                
                 console.error('Registration failed');
             }
         })
