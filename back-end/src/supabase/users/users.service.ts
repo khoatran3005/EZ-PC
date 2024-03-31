@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { SupabaseService } from '../supabase.service';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { genSaltSync, hashSync } from 'bcryptjs';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -17,13 +18,12 @@ export class UsersService {
     return hash;
   }
 
-  async createUser(username: string, email: string, password: string): Promise<any> {
-    const hashPassword = this.getHashPassword(password);
-    password = hashPassword;
-    console.log(password);
+  async createUser(createUserDto: CreateUserDto): Promise<any> {
+    let { name, email, password } = createUserDto;
+    password = this.getHashPassword(password);
     const { data, error } = await this.supabase
       .from('users')
-      .insert([{ username, email, password }]);
+      .insert([{ name, email, password }]);
     if (error) {
       throw error;
     }
