@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Info.scss'
-import ill from '../../assets/ill.png'
+import { Link } from "react-router-dom";
+import infoimg from '../../assets/infoimg.jpg';
 
 const Info = () => {
   const [minValue, setMinValue] = useState(0);
@@ -36,7 +37,7 @@ const Info = () => {
         <form onSubmit={handleSubmit}>
           <div id="input" className="input">
             <p className="kind">Kindly provide the information below:</p>
-            <p className="head">Budget</p>
+            <p className="head">Budget:</p>
             <div className="price-input">
               <div className="field">
                 <span>Min</span>
@@ -87,7 +88,8 @@ const Info = () => {
               />
             </div>
             {/* Other input fields */}
-            <p className="head">Student Level</p>
+            <div id = "test">
+            <p className="head">Student Level:</p>
             <select className="select" size="1" name="level" value={studentLevel} onChange={handleStudentLevelChange}>
               <option className="drop" value="">Select Student Level</option>
               <option value="Elementary">Elementary</option>
@@ -95,16 +97,27 @@ const Info = () => {
               <option value="High School">High School</option>
               <option value="College">College</option>
             </select>
-            <p className="head">Other Hobbies</p>
+            </div>
+
+            <div id ="test">
+            <p className="head">Other Hobbies:</p>
             <select size="1" name="hobby" value={hobby} onChange={handleHobbyChange}>
               <option className="drop" value="">Select Hobby</option>
               <option value="Gaming">Gaming</option>
               <option value="Video Editing">Video Editing</option>
             </select>
+            </div>
+            <div id ="test">
             <button type="submit">Submit</button> {/* Submit button */}
+            </div>
           </div>
         </form>
-      </div>
+
+
+        <div className= "infoimg">
+           <img id="infoimg" src={infoimg} alt="illustration" />
+         </div>
+       </div> 
     </>
   );
 }
