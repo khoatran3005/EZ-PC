@@ -52,7 +52,7 @@ const Register = () => {
                             <input type="checkbox" id="terms" checked={termsAgreed} onChange={handleTermsChange} />
                             <label htmlFor="terms">I agree to the terms & privacy policy</label>
                         </div>
-                        <button type="submit" className="btn primary-btn" onClick={handleSubmit}>Signup</button>
+                        <button type="submit" className="btn primary-btn" onClick={handleSubmit}>Sign Up</button>
                     </form>
                     <p className="signin-link">Have an account? <a href="/login">Sign In</a></p>
                 </div>
