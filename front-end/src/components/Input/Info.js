@@ -114,10 +114,10 @@ const Info = () => {
         </form>
 
 
-        <div className= "infoimg"></div>
-        <img id="infoimg" src={infoimg} alt="illustration" />
-        <div></div>
-      </div>
+        <div className= "infoimg">
+           <img id="infoimg" src={infoimg} alt="illustration" />
+         </div>
+       </div> 
     </>
   );
 }
