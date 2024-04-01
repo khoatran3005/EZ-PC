@@ -1,11 +1,10 @@
 export class CreateComputerDto {
-    a
     name: string;
-    cpu: string;
-    gpu: string;
-    ram: string;
-    storage: string;
-    powersupply: string;
+    type: string;
+    processor: string;
+    memorysize: string;
+    storagesize: string;
+    displaysize: string;
     price: number;
 }
 

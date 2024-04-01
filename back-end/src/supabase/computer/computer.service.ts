@@ -38,10 +38,10 @@ export class ComputerService {
     // }
 
     async createComputer(createComputerDto: CreateComputerDto): Promise<any> {
-        const { name, cpu, gpu, ram, storage, powersupply, price } = createComputerDto;
+        const { name, type, processor, memorysize, storagesize, displaysize, price } = createComputerDto;
         const { data, error } = await this.supabase
             .from('computer')
-            .insert([{ name, cpu, gpu, ram, storage, powersupply, price }]);
+            .insert([{ name, type, processor, memorysize, storagesize, displaysize, price }]);
         if (error) {
             throw error;
         }
