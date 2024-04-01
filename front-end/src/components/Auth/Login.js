@@ -63,7 +63,7 @@ const Login = () => {
                         <input type="checkbox" id="terms" checked={termsAgreed} onChange={handleTermsChange} />
                         <label htmlFor="terms">I agree to the terms & privacy policy</label>
                     </div>
-                    <button type="submit" className="btn primary-btn">Login</button>
+                    <button type="submit" className="btn primary-btn">Log In</button>
                 </form>
                 <p className="signin-link">Don't have an account? <a href="/register">Sign up</a></p>
             </div>
