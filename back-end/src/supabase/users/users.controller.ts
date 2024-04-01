@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Get, Put, Delete, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -31,5 +32,12 @@ export class UsersController {
     @Delete(':id')
     async deleteUser(@Param('id') id: string): Promise<any> {
         return this.usersService.deleteUser(parseInt(id, 10));
+    }
+
+    @Post('login')
+    async login(
+        @Body() loginUserDto: LoginUserDto
+    ): Promise<any> {
+        return this.usersService.login(loginUserDto);
     }
 }

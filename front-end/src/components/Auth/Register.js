@@ -24,7 +24,6 @@ const Register = () => {
             email: email,
             password: password,
         };
-        console.log(userData);
         try {
             const response = await axios.post('http://localhost:3000/users', userData);
 

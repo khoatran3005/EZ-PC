@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { SupabaseService } from '../supabase.service';
 import { SupabaseClient } from '@supabase/supabase-js';
-import { genSaltSync, hashSync } from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 import { CreateUserDto } from './dto/create-user.dto';
+import { compare } from 'bcryptjs';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -13,9 +15,13 @@ export class UsersService {
   }
 
   getHashPassword = (password: string) => {
-    const salt = genSaltSync(10);
-    const hash = hashSync("password", salt);
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync("password", salt);
     return hash;
+  }
+
+  async comparePassword(enteredPassword: string, hashedPassword: string): Promise<boolean> {
+    return await bcrypt.compare(enteredPassword, hashedPassword);
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<any> {
@@ -72,5 +78,28 @@ export class UsersService {
       throw error;
     }
     return data;
+  }
+
+  async login(loginUserDto: LoginUserDto): Promise<any> {
+    const { data, error } = await this.supabase
+      .from('users')
+      .select('*')
+      .eq('email', loginUserDto.email)
+      .single();
+    if (error) {
+      throw error;
+    }
+    if (!data) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+    console.log(loginUserDto.password)
+    console.log(data.password)
+    const isValidPassword = this.comparePassword(loginUserDto.password, data.password);
+    if (!isValidPassword) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+    // Password is correct, return user data excluding password
+    const { password: _, ...userData } = data;
+    return userData;
   }
 }
