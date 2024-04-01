@@ -120,8 +120,7 @@ const Info = () => {
             </select>
             </div>
             <div id ="test">
-            <button type="submit" class="btn btn-primary">Submit</button>
-
+            <button type="submit">Submit</button> {/* Submit button */}
             </div>
           </div>
         </form>

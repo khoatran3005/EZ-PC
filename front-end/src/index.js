@@ -22,6 +22,7 @@ root.render(
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="/info" element={<Info />} />
+        <Route path="/computerList" element={<computerList />} />
       </Route>
     </Routes>
   </BrowserRouter>
