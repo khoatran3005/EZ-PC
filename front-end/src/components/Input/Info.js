@@ -108,7 +108,7 @@ const Info = () => {
             </select>
             </div>
             <div id ="test">
-            <button type="submit">Submit</button> {/* Submit button */}
+            <button type="submit"><Link to="/computerList" className='nav-link'>Submit</Link></button> {/* Submit button */}
             </div>
           </div>
         </form>

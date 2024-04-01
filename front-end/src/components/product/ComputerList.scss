@@ -1,0 +1,123 @@
+.computer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); // Adjust minmax for your desired column width
+    gap: 20px; // Space between grid items
+    padding: 20px;
+  
+    .computer-card {
+      border: 1px solid #ddd; // Simple border for each card
+      border-radius: 8px; // Rounded corners for the card
+      overflow: hidden; // Ensures nothing overflows from the card
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); // Simple shadow for depth
+  
+      img {
+        width: 100%; // Full width of the card
+        height: auto; // Maintain aspect ratio
+        display: block; // Removes bottom space under the image
+      }
+  
+      .computer-info {
+        padding: 15px;
+        h3 {
+          margin-top: 0;
+        }
+      }
+  
+      .rating {
+        font-size: 1rem;
+        margin: 5px 0;
+      }
+  
+      .availability {
+        font-size: 0.875rem;
+        color: #666;
+      }
+  
+      .actions {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+  
+        button {
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          background-color: #0056b3;
+          color: white;
+          cursor: pointer;
+  
+          &:hover {
+            background-color: #003d82;
+          }
+        }
+      }
+    }
+  }
+  
+
+/**
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+// computerList.scss
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  
+  .product {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    width: 300px; // or whatever width you prefer
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  
+    img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  
+    h3 {
+      margin-bottom: 5px;
+    }
+  
+    p {
+      margin-bottom: 5px;
+      color: #333;
+    }
+  
+    .rating {
+      margin-bottom: 10px;
+      color: #ffd700; // Gold color for the stars
+    }
+  
+    .availability {
+      font-size: 0.9rem;
+      color: #666;
+    }
+  
+    .actions {
+      margin-top: 10px;
+      button {
+        background-color: blue;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin-right: 5px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: darken(blue, 10%);
+        }
+      }
+    }
+  }
+  */
+
+  
