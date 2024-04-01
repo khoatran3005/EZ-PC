@@ -55,13 +55,24 @@ const Register = () => {
         <>
             <main id="main-content">
                 <div id="signup-container">
-                    <h1>Create an account</h1>
+                    
+                    <p className="kind">Create an account:</p>
+
                     <form id="create-account-form" onSubmit={handleSubmit}>
+                    <p className="reg">Name</p>
                         <input type="text" id="name" placeholder="Name" value={name} onChange={handleNameChange} />
+
+                        <p className="reg">Email address</p>
+
                         <input type="email" id="email" placeholder="Email address" value={email} onChange={handleEmailChange} />
+
+                        <p className="reg">Password</p>
                         <input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+
+                        <p className="reg">Retype Password</p>
                         <input type="password" id="retype-password" placeholder="Retype Password" value={retypePassword} onChange={handleRetypePasswordChange} />
                         <div className="checkbox-container">
+                            
                             <input type="checkbox" id="terms" checked={termsAgreed} onChange={handleTermsChange} />
                             <label htmlFor="terms">I agree to the terms & privacy policy</label>
                         </div>

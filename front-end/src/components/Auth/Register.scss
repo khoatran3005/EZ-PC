@@ -50,6 +50,10 @@ nav {
     justify-content: center;
     align-items: center;
     min-height: 80vh;
+    margin-top: 5%;
+    
+     /* Adjust the max-width value as needed */
+    
     /* Adjust height based on your design */
     // background-image: url('background-image.png');
     // /* Add your background image */
@@ -101,8 +105,23 @@ nav {
 .signin-link {
     text-align: center;
     margin-top: 20px;
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    font-size: 0.9em;
 }
 
 .signin-link a {
     /* color: #4c; */
+    
 }
+.reg {
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    font-size: 0.9em; /* Set the font size to 1.2 times the default size */
+  }
+ 
+#terms {
+    margin-top: 6%;
+    
+    /* Your CSS styles for the element with ID "terms" */
+}
+
+  

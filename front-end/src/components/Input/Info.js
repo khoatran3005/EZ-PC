@@ -10,13 +10,25 @@ const Info = () => {
   const [hobby, setHobby] = useState('');
 
   const handleMinChange = (event) => {
-    setMinValue(parseInt(event.target.value));
+    const value = parseInt(event.target.value);
+    // Ensure minValue doesn't exceed maxValue
+    if (value <= maxValue) {
+      setMinValue(value);
+    } else {
+      setMinValue(maxValue);
+    }
   };
-
+  
   const handleMaxChange = (event) => {
-    setMaxValue(parseInt(event.target.value));
+    const value = parseInt(event.target.value);
+    // Ensure maxValue doesn't go below minValue
+    if (value >= minValue) {
+      setMaxValue(value);
+    } else {
+      setMaxValue(minValue);
+    }
   };
-
+  
   const handleStudentLevelChange = (event) => {
     setStudentLevel(event.target.value);
   };
@@ -108,7 +120,8 @@ const Info = () => {
             </select>
             </div>
             <div id ="test">
-            <button type="submit">Submit</button> {/* Submit button */}
+            <button type="submit" class="btn btn-primary">Submit</button>
+
             </div>
           </div>
         </form>
@@ -117,6 +130,14 @@ const Info = () => {
         <div className= "infoimg">
            <img id="infoimg" src={infoimg} alt="illustration" />
          </div>
+
+        {/* <div className="infovideo">
+          <video id="infovideo" controls>
+            <source src={infovid} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div> */}
+
        </div> 
     </>
   );
