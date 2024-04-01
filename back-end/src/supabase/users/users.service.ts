@@ -20,13 +20,19 @@ export class UsersService {
     return hash;
   }
 
-  async comparePassword(enteredPassword: string, hashedPassword: string): Promise<boolean> {
-    return await bcrypt.compare(enteredPassword, hashedPassword);
+  comparePasswords = async (password: string, hashedPassword: string) => {
+    try {
+      return await bcrypt.compare(password, hashedPassword);
+    } catch (error) {
+      // Handle error
+      console.error('Error comparing passwords:', error);
+      return false;
+    }
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<any> {
     let { name, email, password } = createUserDto;
-    password = this.getHashPassword(password);
+    // password = this.getHashPassword(password);
     const { data, error } = await this.supabase
       .from('users')
       .insert([{ name, email, password }]);
@@ -92,9 +98,7 @@ export class UsersService {
     if (!data) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    console.log(loginUserDto.password)
-    console.log(data.password)
-    const isValidPassword = this.comparePassword(loginUserDto.password, data.password);
+    const isValidPassword = (loginUserDto.password === data.password);
     if (!isValidPassword) {
       throw new UnauthorizedException('Invalid credentials');
     }

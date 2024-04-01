@@ -36,7 +36,7 @@ const Login = () => {
 
             if (response.status >= 200 && response.status < 300) {
                 console.log(response.data);
-                alert('Welcome back ', response.data.name)
+                alert(`Welcome back ${response.data.name}`)
                 window.location.href = '/';
             } else {
                 console.error('Registration failed');
