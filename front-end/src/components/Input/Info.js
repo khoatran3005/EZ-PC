@@ -20,14 +20,18 @@ const Info = () => {
   };
   
   const handleMaxChange = (event) => {
-    const value = parseInt(event.target.value);
-    // Ensure maxValue doesn't go below minValue
-    if (value >= minValue) {
-      setMaxValue(value);
-    } else {
-      setMaxValue(minValue);
+    let value = parseInt(event.target.value);
+    
+    // Ensure maxValue doesn't go below minValue or exceed 10000
+    if (value < minValue) {
+      value = minValue;
+    } else if (value > 10000) {
+      value = 10000;
     }
+  
+    setMaxValue(value);
   };
+  
   
   const handleStudentLevelChange = (event) => {
     setStudentLevel(event.target.value);
@@ -120,7 +124,7 @@ const Info = () => {
             </select>
             </div>
             <div id ="test">
-            <button type="submit">Submit</button> {/* Submit button */}
+            <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </div>
         </form>
