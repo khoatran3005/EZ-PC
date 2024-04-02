@@ -47,11 +47,16 @@ const Login = () => {
     };
 
     return (
-        <main id="main-content">
+        <main id="main-content1">
             <div id="signup-container">
-                <h1>Login</h1>
+            <p className="kind1">Welcome Back!</p>
+            <p className="kind2">Enter your credentials to access your account:</p>
                 <form id="create-account-form" onSubmit={handleSubmit}>
+
+                <p className="reg">Email address</p>
                     <input type="email" id="email" placeholder="Email address" value={email} onChange={handleEmailChange} />
+                
+                <p className="reg">Password</p>
                     <input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
                     <div className="checkbox-container">
                         <input type="checkbox" id="terms" checked={termsAgreed} onChange={handleTermsChange} />
