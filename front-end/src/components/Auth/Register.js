@@ -1,54 +1,41 @@
 import React, { useState } from 'react';
-import './Register.scss'; 
+import './Register.scss';
+import axios from 'axios';
 
 const Register = () => {
-   
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [retypePassword, setRetypePassword] = useState('');
     const [termsAgreed, setTermsAgreed] = useState(false);
 
-   
+
     const handleNameChange = (event) => setName(event.target.value);
     const handleEmailChange = (event) => setEmail(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value);
     const handleRetypePasswordChange = (event) => setRetypePassword(event.target.value);
     const handleTermsChange = (event) => setTermsAgreed(event.target.checked);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        
-       
-
-        
         const userData = {
             name: name,
             email: email,
             password: password,
-            termsAgreed: termsAgreed
         };
+        try {
+            const response = await axios.post('http://localhost:3000/users', userData);
 
-
-        fetch('backend_endpoint', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
-        .then(response => {
-            if (response.ok) {
-               
+            if (response.status >= 200 && response.status < 300) {
                 console.log('User registered successfully');
+                window.location.href = '/login';
             } else {
-                
                 console.error('Registration failed');
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
     };
 
     return (
@@ -76,7 +63,7 @@ const Register = () => {
                             <input type="checkbox" id="terms" checked={termsAgreed} onChange={handleTermsChange} />
                             <label htmlFor="terms">I agree to the terms & privacy policy</label>
                         </div>
-                        <button type="submit" className="btn primary-btn">Signup</button>
+                        <button type="submit" className="btn primary-btn" onClick={handleSubmit}>Sign Up</button>
                     </form>
                     <p className="signin-link">Have an account? <a href="/login">Sign In</a></p>
                 </div>
