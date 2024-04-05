@@ -1,79 +1,72 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import './suggest.scss';
 
 const Suggest = () => {
-  if (studentLevel === "Elementary") {
-    if (
-      processorType === "Intel any" ||
-      processorType === "AMD any" ||
-      (memorySize >= 8 && memorySize <= 16) ||
-      (storageSize >= 256 && storageSize <= 512) ||
-      (displaySize >= 13 && displaySize <= 15) ||
-      displayQuality === "FHD" ||
-      graphics === "Integrated"
-    ) {
-      return "Recommend computer suitable for an elementary student based on specifications";
-    }
-  } else if (studentLevel === "Middle School") {
-    if (
-      (processorType === "Intel 3" || processorType === "AMD Ryzen") ||
-      (memorySize >= 8 && memorySize <= 16) ||
-      (storageSize >= 512 && storageSize <= 1024) ||
-      (displaySize >= 14 && displaySize <= 15) ||
-      displayQuality === "FHD" ||
-      graphics === "Integrated"
-    ) {
-      return "Recommend computer suitable for a middle school student based on specifications";
-    }
-  } else if (studentLevel === "High School") {
-    if (
-      (processorType === "Intel 5" || processorType === "AMD Ryzen") ||
-      memorySize >= 16 ||
-      (storageSize >= 512 && storageSize <= 1024) ||
-      (displaySize >= 15 && displaySize <= 16) ||
-      displayQuality === "FHD" ||
-      graphics === "Integrated"
-    ) {
-      return "Recommend computer suitable for a high school student based on specifications";
-    }
-  } else if (studentLevel === "College") {
-    if (
-      (processorType === "Intel 7" || processorType === "Intel 9" || processorType === "AMD Ryzen") ||
-      memorySize >= 16 ||
-      storageSize >= 512 ||
-      (displaySize >= 15 && displaySize <= 16) ||
-      displayQuality === "FHD" ||
-      graphics === "Integrated"
-    ) {
-      return "Recommend computer suitable for a college student based on specifications";
-    }
-  } else if (hobby === "Gaming") {
-    if (
-      (processorType === "Intel 7" || processorType === "Intel 9" || processorType === "AMD Ryzen") ||
-      memorySize >= 16 ||
-      storageSize >= 512 ||
-      (displaySize >= 15 && displaySize <= 17) ||
-      displayQuality === "FHD" ||
-      (graphics === "Dedicated" && dedicatedGraphicsMemory >= 4)
-    ) {
-      return "Recommend computer suitable for gaming enthusiasts based on specifications";
-    }
-  } else if (hobby === "Video Editing") {
-    if (
-      (processorType === "Intel 7" || processorType === "Intel 9" || processorType === "AMD Ryzen") ||
-      memorySize >= 16 ||
-      storageSize >= 512 ||
-      (displaySize >= 15 && displaySize <= 17) ||
-      (displayQuality === "2K" || displayQuality === "4K") ||
-      (graphics === "Dedicated" && dedicatedGraphicsMemory >= 4)
-    ) {
-      return "Recommend computer suitable for video editing enthusiasts based on specifications";
-    }
-  }
 
-  return "No specific recommendation based on provided information";
+  const sampleComputers = [
+    {
+      id: 1,
+      brand: 'Brand A',
+      model: 'Model X',
+      image: 'https://example.com/image1.jpg',
+      operatingSystem: 'Windows 10',
+      processor: 'Intel Core i5',
+      memory: '8GB',
+      storage: '256GB SSD',
+      display: '15.6" FHD',
+      price: 999.99,
+    },
+    {
+      id: 2,
+      brand: 'Brand B',
+      model: 'Model Y',
+      image: 'https://example.com/image2.jpg',
+      operatingSystem: 'macOS',
+      processor: 'Apple M1',
+      memory: '16GB',
+      storage: '512GB SSD',
+      display: '13.3" Retina',
+      price: 1299.99,
+    },
+    // Add more sample computer objects as needed
+  ];
+  
+  const [computers, setComputers] = useState([]);
+
+  useEffect(() => {
+    // For demonstration purposes, setting sample computers directly
+    setComputers(sampleComputers);
+  }, []);
+
+  return (
+    <div className="container">
+      <div className="d-flex justify-content-center row">
+        <div className="col-md-10">
+          {computers.map(computer => (
+            <div key={computer.id} className="row p-2 bg-white border rounded">
+              <div className="col-md-3 mt-1"><img className="img-fluid img-responsive rounded product-image" src={computer.image} alt={`${computer.brand} ${computer.model}`} /></div>
+              <div className="col-md-6 mt-1">
+                <h5>{computer.brand} {computer.model}</h5>
+                <div className="d-flex flex-row">
+                  <div className="mr-3"><strong>Operating System:</strong> {computer.operatingSystem}</div>
+                  <div className="mr-3"><strong>Processor:</strong> {computer.processor}</div>
+                  <div className="mr-3"><strong>Memory:</strong> {computer.memory}</div>
+                  <div className="mr-3"><strong>Storage:</strong> {computer.storage}</div>
+                  <div><strong>Display:</strong> {computer.display}</div>
+                </div>
+              </div>
+              <div className="align-items-center align-content-center col-md-3 border-left mt-1">
+                <div className="d-flex flex-row align-items-center">
+                  <h4 className="mr-1">${computer.price}</h4>
+                </div>
+                <div className="d-flex flex-column mt-4"><button className="btn btn-primary btn-sm" type="button">Save</button><button className="btn btn-outline-primary btn-sm mt-2" type="button">Compare</button></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
-
 export default Suggest;
-

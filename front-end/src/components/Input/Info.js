@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './Info.scss'
 import { Link } from "react-router-dom";
-import infoimg from '../../assets/infoimg.jpg';
+import infovid from '../../assets/infovid.mp4';
+// import infoimg from '../../assets/infoimg.jpg';
 
 const Info = () => {
   const [minValue, setMinValue] = useState(0);
@@ -124,15 +125,15 @@ const Info = () => {
             </select>
             </div>
             <div id ="test">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary"><Link to = "/suggest" className='nav-link'>Submit</Link></button>
             </div>
           </div>
         </form>
 
 
-        <div className= "infoimg">
+        {/* <div className= "infoimg">
            <img id="infoimg" src={infoimg} alt="illustration" />
-         </div>
+         </div> */}
 
         {/* <div className="infovideo">
           <video id="infovideo" controls>
@@ -140,6 +141,12 @@ const Info = () => {
             Your browser does not support the video tag.
           </video>
         </div> */}
+          <video autoPlay muted loop>
+                <source
+                    src={infovid}
+                    type="video/mp4"
+                />
+            </video>
 
        </div> 
     </>

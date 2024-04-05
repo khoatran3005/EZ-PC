@@ -14,28 +14,28 @@ export class ComputerService {
 
     // Implement methods for CRUD operations here
 
-    // async fetchDataFromNoteb(): Promise<any> {
-    //     try {
-    //         const apiKey = '112233aabbcc'; // Public API key provided for testing
-    //         const requestData = {
-    //             apikey: apiKey,
-    //             method: 'get_model_info',
-    //             param: {
-    //                 model_id: 1175,
-    //             }
-    //         };
-    //         const formData = new FormData();
-    //         for (const key in requestData) {
-    //             formData.append(key, requestData[key]);
-    //         }
-    //         console.log(formData)
-    //         const response = await axios.post('https://noteb.com/api/webservice.php', formData);
-    //         console.log(response.data);
-    //         return response.data; // or do something with the data
-    //     } catch (error) {
-    //         throw new Error(`Error fetching data from noteb.com: ${error.message}`);
-    //     }
-    // }
+    async fetchDataFromNoteb(): Promise<any> {
+        try {
+            const apiKey = 'FtS0MNE1dt8pvBTbac'; // Public API key provided for testing
+            const requestData = {
+                apikey: apiKey,
+                method: 'get_model_info',
+                param: {
+                    model_id: 1175,
+                }
+            };
+            const formData = new FormData();
+            for (const key in requestData) {
+                formData.append(key, requestData[key]);
+            }
+            console.log(formData)
+            const response = await axios.post('https://noteb.com/api/webservice.php', formData);
+            console.log(response.data);
+            return response.data; // or do something with the data
+        } catch (error) {
+            throw new Error(`Error fetching data from noteb.com: ${error.message}`);
+        }
+    }
 
     async createComputer(createComputerDto: CreateComputerDto): Promise<any> {
         const { name, type, processor, memorysize, storagesize, displaysize, price } = createComputerDto;

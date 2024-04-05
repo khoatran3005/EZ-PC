@@ -8,10 +8,10 @@ export class ComputerController {
     constructor(private readonly computerService: ComputerService) { }
 
     // Implement controller endpoints here
-    // @Get()
-    // async getComputers(): Promise<any> {
-    //     return this.computerService.fetchDataFromNoteb();
-    // }
+    @Get()
+    async getComputers(): Promise<any> {
+        return this.computerService.fetchDataFromNoteb();
+    }
 
     @Post()
     async createUser(
