@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Login.scss';
 import axios from 'axios';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -36,7 +38,8 @@ const Login = () => {
 
             if (response.status >= 200 && response.status < 300) {
                 console.log(response.data);
-                alert(`Welcome back ${response.data.name}`)
+                alert(`Welcome back ${response.data.name}`) //comment out later. Redirects, can't see notif without this to pause.
+                toast.success(`Welcome back ${response.data.name}`)
                 window.location.href = '/';
             } else {
                 console.error('Registration failed');
@@ -60,6 +63,8 @@ const Login = () => {
                     <button type="submit" className="btn primary-btn">Log In</button>
                 </form>
                 <p className="signin-link">Don't have an account? <a href="/register">Sign up</a></p>
+
+                <ToastContainer newestOnTop/>
             </div>
         </main>
     );
