@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, Query } from '@nestjs/common';
 import { ComputerService } from './computer.service';
 import { CreateComputerDto } from './dto/create-computer.dto';
 
@@ -8,35 +8,16 @@ export class ComputerController {
     constructor(private readonly computerService: ComputerService) { }
 
     // Implement controller endpoints here
-    // @Get()
-    // async getComputers(): Promise<any> {
-    //     return this.computerService.fetchDataFromNoteb();
-    // }
-
-    @Post()
-    async createUser(
-        @Body() createComputerDto: CreateComputerDto
-    ): Promise<any> {
-        return this.computerService.createComputer(createComputerDto);
+    @Get('api')
+    async getComputers(): Promise<any> {
+        return this.computerService.fetchDatatoDatabase();
     }
 
     @Get()
-    async getUsers(): Promise<any[]> {
-        return this.computerService.getComputer();
-    }
-
-    @Get(':id')
-    async getUserById(@Param('id') id: string): Promise<any> {
-        return this.computerService.getComputerById(parseInt(id, 10));
-    }
-
-    @Put(':id')
-    async updateUser(@Param('id') id: string, @Body() computerData: any): Promise<any> {
-        return this.computerService.updateComputer(parseInt(id, 10), computerData);
-    }
-
-    @Delete(':id')
-    async deleteUser(@Param('id') id: string): Promise<any> {
-        return this.computerService.deleteComputer(parseInt(id, 10));
+    async getUsers(@Body('min_price') min_price: string,
+        @Body('max_price') max_price: string,
+        @Body('student_level') student_level: string,
+        @Body('hobbie') hobbie: string): Promise<any[]> {
+        return this.computerService.getComputer(parseInt(min_price), parseInt(max_price), student_level, hobbie);
     }
 }
