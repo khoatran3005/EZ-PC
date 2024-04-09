@@ -2,6 +2,12 @@
 
 
 body{background:#eee}
+.Sug {
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    font-weight: bold; /* Make the text bold */
+    font-size: 2.2em; /* Set the font size to 1.2 times the default size */
+    margin-left: 120px;
+  }
 .ratings i{font-size: 16px;
            color: red}
 .strike-text{color: red;
@@ -30,8 +36,9 @@ h4{
 
 }
  .para{font-size: 16px}
- .container{
-    margin-top: 150px;
-    margin-left: 170px;
+ .Scontainer{
+    margin-top: 100px;
+    margin-left: 50px;
     position: center;
+    
  }

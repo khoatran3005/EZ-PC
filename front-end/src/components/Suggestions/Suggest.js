@@ -39,7 +39,8 @@ const Suggest = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="Scontainer">
+      <p className="Sug">Here are some suggestions for you:</p>
       <div className="d-flex justify-content-center row">
         <div className="col-md-10">
           {computers.map(computer => (

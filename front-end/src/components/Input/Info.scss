@@ -134,9 +134,9 @@ input[type="range"]::-moz-range-thumb {
 .container {
   align-items: flex-end;
   position: relative; /* has to be position relative for left to work, or you could just do margin-left: -50px; too */
-  left: -120px;
-  display: flex;
-  top: -120px;
+  left: -170px;
+
+  
   
     /* background-image: url("../../assets/ill.png");
     background-size: cover;
@@ -167,5 +167,17 @@ input[type="range"]::-moz-range-thumb {
   //   z-index: -1; /* Ensure the video is behind other content */
   //   background-color: #ffffff; /* Set a background color for the video */
   // }
+
+
+  // .video-container {
+    
+   
+  
+  // }
+  
+  .video-container video {
+    
+    max-width: 750px; /* Adjust the maximum width as needed */
+  }
   
   

@@ -141,12 +141,12 @@ const Info = () => {
             Your browser does not support the video tag.
           </video>
         </div> */}
+          <div className="video-container">
           <video autoPlay muted loop>
-                <source
-                    src={infovid}
-                    type="video/mp4"
-                />
-            </video>
+            <source src={infovid} type="video/mp4" />
+          </video>
+        </div>
+
 
        </div> 
     </>
