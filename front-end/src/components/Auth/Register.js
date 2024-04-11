@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Register.scss';
 import axios from 'axios';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
 
@@ -29,12 +31,15 @@ const Register = () => {
 
             if (response.status >= 200 && response.status < 300) {
                 console.log('User registered successfully');
-                window.location.href = '/login';
+                toast.success('Registration successful!', {autoClose: 2000});
+                setTimeout(() => window.location.href = '/login', 2500); // Redirect to Log-in in 2.5s
             } else {
                 console.error('Registration failed');
+                toast.error('Registration failed');
             }
         } catch (error) {
             console.error('Error:', error.message);
+            toast.error('Registration failed. Review form and try again.');
         }
     };
 
@@ -55,6 +60,8 @@ const Register = () => {
                         <button type="submit" className="btn primary-btn" onClick={handleSubmit}>Sign Up</button>
                     </form>
                     <p className="signin-link">Have an account? <a href="/login">Sign In</a></p>
+
+                    <ToastContainer newestOnTop/>
                 </div>
             </main>
         </>
