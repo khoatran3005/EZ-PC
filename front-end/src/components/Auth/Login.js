@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Login.scss';
 import axios from 'axios';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -36,13 +38,23 @@ const Login = () => {
 
             if (response.status >= 200 && response.status < 300) {
                 console.log(response.data);
-                alert(`Welcome back ${response.data.name}`)
-                window.location.href = '/';
+                toast.success(`Welcome back, ${response.data.name}`, {autoClose: 2000}); // Send log-in success notif
+                setTimeout(() => window.location.href = '/', 2500); // Redirect Home in 2.5s
             } else {
-                console.error('Registration failed');
+                console.error('Log-In failed');
+                toast.error('Log-In failed');
             }
         } catch (error) {
-            console.error('Error:', error.message);
+
+            // Code 401: Unauthorized, Incorrect Creds 
+            // Notify incorrect creds. (In practice, for us, specifically wrong pw)
+            if (error.response.status == 401) {
+                toast.error('Log-In Failed: Incorrect Credentials');
+
+            } else { // includes wrong username
+                console.error('Error:', error.message);
+                toast.error('Error');
+            }
         }
     };
 
@@ -60,6 +72,8 @@ const Login = () => {
                     <button type="submit" className="btn primary-btn">Log In</button>
                 </form>
                 <p className="signin-link">Don't have an account? <a href="/register">Sign up</a></p>
+
+                <ToastContainer newestOnTop/>
             </div>
         </main>
     );
