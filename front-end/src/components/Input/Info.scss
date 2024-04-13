@@ -1,33 +1,48 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Inter');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
   
-  #input{
-    margin-top: 150px;
-    font-family: 'Montserrat';
-    margin-left: 150px;
-  
+  #test{
+    margin-top: 10%;
   }
-  .input {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    
+  .drop{
+    color:#666666;
+  }
+  .kind {
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    font-weight: bold; /* Make the text bold */
+    font-size: 1.5em; /* Set the font size to 1.2 times the default size */
   }
   
-  
-  #select {
-    font-family: 'Montserrat', sans-serif;
-    width:220px;
-    height: 50px;
-    border: none;
-    border-radius: 5px;
-  }
-  .head{
-     /* Use Poppins font */
-     font-weight: bold;
-    font-size: 1.1em;
+#input {
+  margin-top: 150px;
+  font-family: 'Montserrat';
+  margin-left: 150px;
+
+}
+
+.input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+
+#select {
+  font-family: 'Montserrat', sans-serif;
+  width: 220px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+}
+
+.head {
+  /* Use Poppins font */
+  font-weight: bold;
+  font-size: 1.1em;
 
   }
   #test{
@@ -43,92 +58,94 @@
   }
   
 
-  .price-input {
-    width: 100%;
-    display: flex;
-    margin: 30px 0 35px;
+.price-input {
+  width: 100%;
+  display: flex;
+  margin: 30px 0 35px;
 }
 
 .price-input .field {
-    height: 45px;
-    width: 150px;
-    display: flex;
-    align-items: center;
+  height: 45px;
+  width: 150px;
+  display: flex;
+  align-items: center;
 }
 
 .field input {
-    width: 100%;
-    height: 100%;
-    outline: none;
-    font-size: 19px;
-    text-align: center;
-    margin-left: 12px;
-    border-radius: 5px;
-    border: 1px solid #000000;
-    -moz-appearance: textfield;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  font-size: 19px;
+  text-align: center;
+  margin-left: 12px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  -moz-appearance: textfield;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 .price-input .separator {
-    width: 50px;
-    display: flex;
-    font-size: 19px;
-    align-items: center;
-    justify-content: center;
+  width: 50px;
+  display: flex;
+  font-size: 19px;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider {
-    height: 15px;
-    width: 50%;
-    border-radius: 5px;
-    background: #ddd;
-    position: relative;
-    top: -8px;
+  height: 15px;
+  width: 50%;
+  border-radius: 5px;
+  background: #ddd;
+  position: relative;
+  top: -8px;
 }
 
 .slider .progress {
-    height: 15px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    border-radius: 5px;
-    background: #3a75ac;
+  height: 15px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-radius: 5px;
+  background: #3a75ac;
 }
 
 .range-input {
-    position: relative;
+  position: relative;
 }
 
 .range-input input {
-    position: absolute;
-    top: -15px;
-    height: 5px;
-    width: 50%;
-    background: none;
-    pointer-events: none;
-    -webkit-appearance: none;
+  position: absolute;
+  top: -15px;
+  height: 5px;
+  width: 50%;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-    height: 17px;
-    width: 17px;
-    pointer-events: auto;
-    -webkit-appearance: none;
-    background: #3a75ac;
-    margin-top: -6px; /* Adjusted to center the thumb vertically */
+  height: 17px;
+  width: 17px;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  background: #3a75ac;
+  margin-top: -6px;
+  /* Adjusted to center the thumb vertically */
 }
 
 input[type="range"]::-moz-range-thumb {
-    height: 17px;
-    width: 17px;
-    pointer-events: auto;
-    -moz-appearance: none;
-    background: #3a75ac;
-    margin-top: -6px; /* Adjusted to center the thumb vertically */
+  height: 17px;
+  width: 17px;
+  pointer-events: auto;
+  -moz-appearance: none;
+  background: #3a75ac;
+  margin-top: -6px;
+  /* Adjusted to center the thumb vertically */
 }
 
 .container {

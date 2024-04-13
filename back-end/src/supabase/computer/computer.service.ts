@@ -58,15 +58,14 @@ export class ComputerService {
                     type: result.drives[0].type
                 };
 
-                let image = result.images[0];
+                let image = result.images;
                 const price: number = result.price;
                 const tag: string[] = await this.classifyComputer(processor, ram, storage, display);
 
-                //change image from URL to store in database
-                const data1 = await axios.get(image, { responseType: 'arraybuffer' });
-                image = Buffer.from(data1.data);
+                // //change image from URL to store in database
+                // const data1 = await axios.get(image, { responseType: 'arraybuffer' });
+                // image = Buffer.from(data1.data);
 
-                console.log(image)
                 this.createComputer({
                     id, name, company, os, processor, display, graphics_card, ram, dimensions, storage, image, price, tag
                 })
@@ -141,7 +140,8 @@ export class ComputerService {
             .select('*')
             .gte('price', min_price) // Filter by minimum price
             .lte('price', max_price) // Filter by maximum price
-            .contains('tag', [student_level, hobbie]);
+            .contains('tag', [student_level, hobbie])
+            .limit(10);
         if (error) {
             throw error;
         }
