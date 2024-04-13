@@ -31,15 +31,20 @@ const Suggest = () => {
     // Add more sample computer objects as needed
   ];
   
+  
   const [computers, setComputers] = useState([]);
 
   useEffect(() => {
     // For demonstration purposes, setting sample computers directly
     setComputers(sampleComputers);
+
+   
   }, []);
 
   return (
-    <div className="Scontainer">
+    <div className="Scontainer" style={{  position: 'relative', /* Ensure proper positioning */
+    height: '100vh', /* Full viewport height */
+    background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', /* Gradient background */}}>
       <p className="Sug">Here are some suggestions for you:</p>
       <div className="d-flex justify-content-center row">
         <div className="col-md-10">

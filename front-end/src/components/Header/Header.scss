@@ -8,10 +8,10 @@ body {
 nav {
     margin-top: 0;
     text-align: center;
-    padding: 30px;
+    height: 10px;
     background-color: #ffffff;
     font-family: 'Inter', sans-serif;
-    justify-content: space-between;
+    
     
 }
 
@@ -25,21 +25,19 @@ nav a {
 }
 
 #logo {
+    margin-top: 30px;
     float: left;
     margin-left: 120px;
     width: auto;
 }
 
 #logo img {
-    width: 150px;
     /* Adjust the width as needed */
-    height: auto;
-    margin-right: 10px;
     /* Add margin for spacing */
-    margin-top: -25px;
 }
 
 #HLS {
+    margin-top: 30px;
     margin-right: 120px;
     font-family: 'Inter', sans-serif;
 
@@ -63,3 +61,6 @@ nav a {
 .nav-link{
     font-family: 'Inter', sans-serif;
 }
+
+
+

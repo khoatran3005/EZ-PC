@@ -20,4 +20,14 @@ export class ComputerController {
         @Body('hobbie') hobbie: string): Promise<any[]> {
         return this.computerService.getComputer(parseInt(min_price), parseInt(max_price), student_level, hobbie);
     }
+
+//     // Define a new route in your computer controller to handle the POST request
+// @Post()
+// async suggestComputers(@Body() requestData: any): Promise<any> {
+//   const { min_price, max_price, student_level, hobbie } = requestData;
+//   // Process the submitted information and fetch suggested computers from the database
+//   const suggestedComputers = await this.computerService.getSuggestedComputers(min_price, max_price, student_level, hobbie);
+//   return suggestedComputers;
+// }
+
 }

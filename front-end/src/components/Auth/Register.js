@@ -40,7 +40,9 @@ const Register = () => {
 
     return (
         <>
-            <main id="main-content">
+            <main id="main-content" style={{  position: 'relative', /* Ensure proper positioning */
+    height: '100vh', /* Full viewport height */
+    background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', /* Gradient background */}}>
                 <div id="signup-container">
                     
                     <p className="kind">Create an account:</p>
