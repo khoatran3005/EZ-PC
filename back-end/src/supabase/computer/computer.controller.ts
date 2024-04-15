@@ -14,10 +14,16 @@ export class ComputerController {
     }
 
     @Get()
-    async getUsers(@Body('min_price') min_price: string,
+    async getComputer(@Body('min_price') min_price: string,
         @Body('max_price') max_price: string,
         @Body('student_level') student_level: string,
         @Body('hobbie') hobbie: string): Promise<any[]> {
         return this.computerService.getComputer(parseInt(min_price), parseInt(max_price), student_level, hobbie);
+    }
+
+    @Get('compare')
+    async get(@Body('computer_id_1') computer_id_1: string,
+        @Body('computer_id_2') computer_id_2: string): Promise<any[]> {
+        return this.computerService.compareComputer(computer_id_1, computer_id_2);
     }
 }

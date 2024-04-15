@@ -16,7 +16,7 @@ export class ComputerService {
         const options = {
             method: 'GET',
             url: 'https://laptopdb1.p.rapidapi.com/laptop/search',
-            params: { company: 'Asus' },
+            params: { company: 'Apple' },
             headers: {
                 'X-RapidAPI-Key': '2478155a8cmshcaf03d1de7a38f0p128265jsnfe5212b1355c',
                 'X-RapidAPI-Host': 'laptopdb1.p.rapidapi.com'
@@ -147,5 +147,23 @@ export class ComputerService {
         }
         console.log(data)
         return data;
+    }
+
+    async compareComputer(computer_id_1: string, computer_id_2: string): Promise<any[]> {
+        const { data: data1, error: error1 } = await this.supabase // get first computer information
+            .from('computer')
+            .select('*')
+            .eq('id', computer_id_1)
+            .single();
+        const { data: data2, error: error2 } = await this.supabase // get second computer information
+            .from('computer')
+            .select('*')
+            .eq('id', computer_id_2)
+            .single();
+
+        if (error1 || error2) {
+            throw error1 || error2;
+        }
+        return [data1, data2];
     }
 }

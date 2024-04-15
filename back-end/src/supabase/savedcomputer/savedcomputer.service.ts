@@ -11,4 +11,14 @@ export class SavedComputerService {
     }
 
     // Implement methods for CRUD operations here
+    async savedComputer(user_id: string, computer_id: string): Promise<any[]> {
+        const { data, error } = await this.supabase
+            .from('savedcomputer')
+            .insert([{ user_id, computer_id }]);
+        if (error) {
+            throw error;
+        }
+        console.log(data)
+        return data;
+    }
 }
