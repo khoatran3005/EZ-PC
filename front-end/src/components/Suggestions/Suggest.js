@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './suggest.scss';
+import axios from 'axios';
+
 
 const Suggest = () => {
 
@@ -33,6 +35,29 @@ const Suggest = () => {
   
   const [computers, setComputers] = useState([]);
 
+  const handleSave = async function(event){
+    
+    // Placeholder hard-coded IDs.
+    const saveData = {
+      user_id: 67, // "Mo, mo@gmail.com"
+      computer_id: "64dbf56d4bed3271751a4ca2",
+    }
+
+    try {
+      const response = await axios.post('http://localhost:3000/savedcomputer', saveData);
+
+      console.log(response.data);
+      if (response.status >= 200 && response.status < 300) {
+          alert(`Welcome back ${response.data.name}`)
+      } else {
+          console.error('Failed to save computer.');
+      }
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+
+  }
+
   useEffect(() => {
     // For demonstration purposes, setting sample computers directly
     setComputers(sampleComputers);
@@ -59,7 +84,9 @@ const Suggest = () => {
                 <div className="d-flex flex-row align-items-center">
                   <h4 className="mr-1">${computer.price}</h4>
                 </div>
-                <div className="d-flex flex-column mt-4"><button className="btn btn-primary btn-sm" type="button">Save</button><button className="btn btn-outline-primary btn-sm mt-2" type="button">Compare</button></div>
+                <div className="d-flex flex-column mt-4">
+                  <button className="btn btn-primary btn-sm" type="button" onClick={handleSave}>Save</button>
+                  <button className="btn btn-outline-primary btn-sm mt-2" type="button">Compare</button></div>
               </div>
             </div>
           ))}

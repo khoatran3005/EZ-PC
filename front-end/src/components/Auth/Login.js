@@ -19,10 +19,23 @@ const Login = () => {
         setTermsAgreed(event.target.checked); // Update termsAgreed state based on checkbox status
     };
 
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|.(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/
+            );
+    };
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Perform validation here if needed 
+        // Validate details
+
+        if (!validateEmail(email)) {
+            console.error('Registration Failed. Invalid Email.');
+            // also toast notify user -----
+        };
 
         // Once validated, send the data to the backend for authentication
         const userData = {
