@@ -10,15 +10,46 @@ export class SavedComputerService {
         this.supabase = supabaseService.getSupabaseClient();
     }
 
-    // Implement methods for CRUD operations here
-    async savedComputer(user_id: string, computer_id: string): Promise<any[]> {
+    async savedComputer(user_id: number, computer_id: string): Promise<void> {
         const { data, error } = await this.supabase
             .from('savedcomputer')
+            .select('*')
+            .eq('user_id', user_id)
+            .eq('computer_id', computer_id)
+            .single();
+        if (data) {
+            // Relationship already exists, handle accordingly (throw an error, return, etc.)
+            throw new Error('User already saved this computer');
+        }
+
+        const { error: saveError } = await this.supabase
+            .from('savedcomputer')
             .insert([{ user_id, computer_id }]);
+
+        if (saveError) {
+            throw saveError;
+        }
+    }
+
+    async getSavedComputer(saved_id): Promise<any> {
+        const { data, error } = await this.supabase
+            .from('savedcomputer')
+            .select('*')
+            .eq('saved_id', saved_id)
+            .single();
         if (error) {
             throw error;
         }
-        console.log(data)
         return data;
+    }
+
+    async deleteSavedComputer(saved_id): Promise<void> {
+        const { data, error } = await this.supabase
+            .from('savedcomputer')
+            .delete()
+            .eq('saved_id', saved_id)
+        if (error) {
+            throw error;
+        }
     }
 }
