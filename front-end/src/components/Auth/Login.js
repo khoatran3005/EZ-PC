@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.scss';
 import axios from 'axios';
-import {ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
@@ -32,13 +32,11 @@ const Login = () => {
             password: password,
         };
 
-
         try {
-            const response = await axios.post('http://localhost:3000/users/login', userData);
-
+            const response = await axios.get('http://localhost:3000/users/login', userData);
             if (response.status >= 200 && response.status < 300) {
                 console.log(response.data);
-                toast.success(`Welcome back, ${response.data.name}`, {autoClose: 2000}); // Send log-in success notif
+                toast.success(`Welcome back, ${response.data.name}`, { autoClose: 2000 }); // Send log-in success notif
                 setTimeout(() => window.location.href = '/', 2500); // Redirect Home in 2.5s
             } else {
                 console.error('Log-In failed');
@@ -73,7 +71,7 @@ const Login = () => {
                 </form>
                 <p className="signin-link">Don't have an account? <a href="/register">Sign up</a></p>
 
-                <ToastContainer newestOnTop/>
+                <ToastContainer newestOnTop />
             </div>
         </main>
     );
