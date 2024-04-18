@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
-
+import ReactPaginate from 'react-paginate';
 import './suggest.scss';
 
 const Suggest = () => {
   const [computers, setComputers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage] = useState(4); // Change this value as per your requirement
   const location = useLocation();
 
   useEffect(() => {
@@ -14,12 +16,32 @@ const Suggest = () => {
     }
   }, [location.state]);
 
+    // Function to scroll to the top of the page
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Optional smooth scrolling animation
+      });
+    };
+  
+
+  const offset = currentPage * itemsPerPage;
+  const pageCount = Math.ceil(computers.length / itemsPerPage);
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+    scrollToTop(); // Scroll to top when pagination button is clicked
+
+  };
+
+  const currentItems = computers.slice(offset, offset + itemsPerPage);
+
   return (
-    <div className="Scontainer" style={{ position: 'relative', minHeight: '200vh',maxHeight:'5000vh', width: '100vw', background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', margin: '0', padding: '0' }}>
+    <div className="Scontainer" style={{ position: 'relative', minHeight: '200vh', maxHeight: '5000vh', width: '100vw', background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', margin: '0', padding: '0' }}>
       <p className="Sug">Here are some suggestions for you:</p>
       <div className="d-flex justify-content-center row">
         <div className="col-md-10">
-          {computers.map(computer => (
+          {currentItems.map(computer => (
             <div key={computer.id} className="row p-2 bg-white border rounded">
               <div className="col-md-3 mt-1"><img className="img-fluid img-responsive rounded product-image" src={computer.image[0]} alt={`${computer.company} ${computer.name}`} /></div>
               <div className="col-md-6 mt-1">
@@ -42,6 +64,17 @@ const Suggest = () => {
           ))}
         </div>
       </div>
+      <ReactPaginate
+        previousLabel={"Previous"}
+        nextLabel={"Next"}
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination"}
+        previousLinkClassName={"previous_page"}
+        nextLinkClassName={"next_page"}
+        disabledClassName={"pagination_disabled"}
+        activeClassName={"pagination_active"}
+      />
     </div>
   );
 };
