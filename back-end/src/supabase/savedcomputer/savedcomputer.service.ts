@@ -11,7 +11,6 @@ export class SavedComputerService {
         this.supabase = supabaseService.getSupabaseClient();
     }
 
-<<<<<<< HEAD
     async savedComputer(user_id: number, computer_id: string): Promise<void> {
         const { data, error } = await this.supabase
             .from('savedcomputer')
@@ -54,18 +53,4 @@ export class SavedComputerService {
             throw error;
         }
     }
-=======
-    // Implement methods for CRUD operations here
-    
-    async createSavedComputer(createSavedDto: createSavedComputerDto): Promise<any> {
-        let { user_id, computer_id: computer_id } = createSavedDto;
-        const { data, error } = await this.supabase
-          .from('savedcomputer')
-          .insert([{ user_id, computer_id }]);
-        if (error) {
-          throw error;
-        }
-        return data;
-      }
->>>>>>> testbranch
 }

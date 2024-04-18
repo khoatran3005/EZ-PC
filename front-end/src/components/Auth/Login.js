@@ -44,9 +44,9 @@ const Login = () => {
             email: email,
             password: password,
         };
-
+        console.log(userData)
         try {
-            const response = await axios.get('http://localhost:3000/users/login', userData);
+            const response = await axios.post('http://localhost:3000/users/login', userData);
             if (response.status >= 200 && response.status < 300) {
                 console.log(response.data);
                 toast.success(`Welcome back, ${response.data.name}`, { autoClose: 2000 }); // Send log-in success notif
