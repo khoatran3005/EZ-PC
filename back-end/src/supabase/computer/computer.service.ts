@@ -4,7 +4,7 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import axios from 'axios';
 import { CreateComputerDto } from './dto/create-computer.dto';
 
-@Injectable()
+@Injectable() 
 export class ComputerService {
     private supabase: SupabaseClient;
 
@@ -135,6 +135,8 @@ export class ComputerService {
     }
 
     async getComputer(min_price: number, max_price: number, student_level: string, hobbie: string): Promise<any[]> {
+
+        
         const { data, error } = await this.supabase
             .from('computer')
             .select('*')
@@ -148,4 +150,25 @@ export class ComputerService {
         console.log(data)
         return data;
     }
+
+    async getComputerSL(min_price: number, max_price: number, student_level: string): Promise<any[]> {
+
+        
+        const { data, error } = await this.supabase
+            .from('computer')
+            .select('*')
+            .gte('price', min_price) // Filter by minimum price
+            .lte('price', max_price) // Filter by maximum price
+            .contains('tag', student_level)
+            .limit(10);
+        if (error) {
+            throw error;
+        }
+        console.log(data)
+        return data;
+    }
+
+    
+
+
 }

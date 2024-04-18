@@ -34,15 +34,35 @@ body{background:#eee}
 }
 h4{
     font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+
+}
+.mr-3{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding-top: 10px;
 
 }
  .para{font-size: 16px}
-//  .Scontainer{
-//     margin-top: 100px;
-//     margin-left: 50px;
-//     position: center;
-//     padding-top: 0%;
-//     height: calc(100vh - HEADER_HEIGHT); /* Subtract header height from viewport height */
-//     background: linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%);
-    
-//  }
+
+ .col-md-10{
+    padding: 10px;
+    max-width: 1200px;
+    height: 10px;
+ }
+
+ .flex-row > div {
+    margin-top: 50px; /* Example margin */
+}
+.flex-column .mr-3 {
+    text-align: left; /* Left-align the content */
+}
+
+.Scontainer {
+    position: relative;
+    height: 100vh; /* Cover the entire viewport height */
+    width: 100vw; /* Cover the entire viewport width */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    background: linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%);
+}
