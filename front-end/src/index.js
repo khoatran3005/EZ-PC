@@ -12,6 +12,8 @@ import {
 } from "react-router-dom";
 import Homepage from './components/Home/Homepage';
 import Info from './components/Input/Info';
+import Suggestions from './components/Suggestions/Suggest';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +24,9 @@ root.render(
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="/info" element={<Info />} />
+        <Route path="/computerList" element={<computerList />} />
+        <Route path="/suggest" element={<Suggestions />} />
+
       </Route>
     </Routes>
   </BrowserRouter>

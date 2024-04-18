@@ -8,14 +8,15 @@ body {
 nav {
     margin-top: 0;
     text-align: center;
-    padding: 30px;
+    height: 10px;
     background-color: #ffffff;
     font-family: 'Inter', sans-serif;
-    justify-content: space-between;
+    
+    
 }
 
 nav a {
-    color: #4D4D4D;
+    color:  #3A75AC;
     text-decoration: none;
     margin: 0 15px;
     margin-top: -4px;
@@ -24,21 +25,19 @@ nav a {
 }
 
 #logo {
+    margin-top: 30px;
     float: left;
     margin-left: 120px;
     width: auto;
 }
 
 #logo img {
-    width: 150px;
     /* Adjust the width as needed */
-    height: auto;
-    margin-right: 10px;
     /* Add margin for spacing */
-    margin-top: -25px;
 }
 
 #HLS {
+    margin-top: 30px;
     margin-right: 120px;
     font-family: 'Inter', sans-serif;
 
@@ -48,10 +47,11 @@ nav a {
     float: right;
     margin-top: -10px;
     font-weight: 100;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn {
-    background-color: #3A75AC;
+    background-color: #3a75ac;
     color: #fff;
     padding: 8px 15px;
     border: none;
@@ -61,3 +61,6 @@ nav a {
 .nav-link{
     font-family: 'Inter', sans-serif;
 }
+
+
+
