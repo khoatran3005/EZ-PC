@@ -26,6 +26,7 @@ root.render(
         <Route path="/info" element={<Info />} />
         <Route path="/computerList" element={<computerList />} />
         <Route path="/suggest" element={<Suggestions />} />
+
       </Route>
     </Routes>
   </BrowserRouter>

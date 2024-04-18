@@ -4,7 +4,7 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import axios from 'axios';
 import { CreateComputerDto } from './dto/create-computer.dto';
 
-@Injectable()
+@Injectable() 
 export class ComputerService {
     private supabase: SupabaseClient;
 
@@ -12,83 +12,163 @@ export class ComputerService {
         this.supabase = supabaseService.getSupabaseClient();
     }
 
-    // Implement methods for CRUD operations here
-
-    async fetchDataFromNoteb(): Promise<any> {
-        try {
-            const apiKey = 'FtS0MNE1dt8pvBTbac'; // Public API key provided for testing
-            const requestData = {
-                apikey: apiKey,
-                method: 'get_model_info',
-                param: {
-                    model_id: 1175,
-                }
-            };
-            const formData = new FormData();
-            for (const key in requestData) {
-                formData.append(key, requestData[key]);
+    async fetchDatatoDatabase(): Promise<any> {
+        const options = {
+            method: 'GET',
+            url: 'https://laptopdb1.p.rapidapi.com/laptop/search',
+            params: { company: 'Asus' },
+            headers: {
+                'X-RapidAPI-Key': '2478155a8cmshcaf03d1de7a38f0p128265jsnfe5212b1355c',
+                'X-RapidAPI-Host': 'laptopdb1.p.rapidapi.com'
             }
-            console.log(formData)
-            const response = await axios.post('https://noteb.com/api/webservice.php', formData);
-            console.log(response.data);
-            return response.data; // or do something with the data
+        };
+
+        try {
+            const response = await axios.request(options);
+            for (const key in response.data.result.laptops) {
+                //get data from API
+                const result = response.data.result.laptops[key];
+                const id: string = result._id.$oid;
+                const name: string = result.name;
+                const company: string = result.company;
+                const os: string = result.os;
+                const processor = {
+                    company: result.cpu.company,
+                    type: result.cpu.type,
+                    model: result.cpu.model
+                };
+
+                const display: number = result.screen.inches;
+
+                const graphics_card = {
+                    company: result.graphics_card.company,
+                    type: result.graphics_card.type,
+                    model: result.graphics_card.model
+                };
+
+                const ram: number = result.ram.amount;
+
+                const dimensions = {
+                    dimensions: result.dimensions.dimensions,
+                    weight: result.dimensions.weight
+                };
+
+                const storage = {
+                    space: parseInt(result.drives[0].space),
+                    type: result.drives[0].type
+                };
+
+                let image = result.images;
+                const price: number = result.price;
+                const tag: string[] = await this.classifyComputer(processor, ram, storage, display);
+
+                // //change image from URL to store in database
+                // const data1 = await axios.get(image, { responseType: 'arraybuffer' });
+                // image = Buffer.from(data1.data);
+
+                this.createComputer({
+                    id, name, company, os, processor, display, graphics_card, ram, dimensions, storage, image, price, tag
+                })
+            }
+            return response.data;
         } catch (error) {
-            throw new Error(`Error fetching data from noteb.com: ${error.message}`);
+            throw new Error(`Error searching laptops: ${error.message}`);
         }
     }
 
-    async createComputer(createComputerDto: CreateComputerDto): Promise<any> {
-        const { name, type, processor, memorysize, storagesize, displaysize, price } = createComputerDto;
+    createComputer = async (createComputerDto: CreateComputerDto): Promise<any> => {
+        const { id, name, company, os, processor, display, graphics_card, ram, dimensions, storage, image, price, tag } = createComputerDto;
         const { data, error } = await this.supabase
             .from('computer')
-            .insert([{ name, type, processor, memorysize, storagesize, displaysize, price }]);
+            .insert([{ id, name, company, os, processor, display, graphics_card, ram, dimensions, storage, image, price, tag }]);
         if (error) {
             throw error;
         }
         return data;
     }
 
-    async getComputer(): Promise<any[]> {
-        const { data, error } = await this.supabase
-            .from('computer')
-            .select('*');
-        if (error) {
-            throw error;
+    classifyComputer = async (processor: { company: string, type: string, model: string },
+        ram: number,
+        storage: { space: number, type: string },
+        display: number
+    ): Promise<any> => {
+        let tag: string[] = [];
+        if (ram === 8 && storage.space === 512 && display === 14) {
+            tag.push("elementary")
         }
-        return data;
+        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i3') &&
+            (ram >= 8 && ram <= 16) &&
+            (storage.space >= 512 && storage.space <= 1024) &&
+            (display >= 14 && display <= 15)
+        )) {
+            tag.push("middle_school")
+        }
+        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i5') &&
+            (ram === 16) &&
+            (storage.space >= 512 && storage.space <= 1024) &&
+            (display >= 15 && display <= 16)
+        )) {
+            tag.push("high_school")
+        }
+        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i7') || processor.model.startsWith('Core i9') &&
+            (ram >= 16) &&
+            (storage.space >= 512) &&
+            (display >= 15 && display <= 16)
+        )) {
+            tag.push("college")
+        }
+        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i7') || processor.model.startsWith('Core i9') &&
+            (ram >= 16) &&
+            (storage.space >= 512) &&
+            (display >= 15 && display <= 17)
+        )) {
+            tag.push("gaming")
+        }
+        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i7') || processor.model.startsWith('Core i9') &&
+            (ram >= 16) &&
+            (storage.space >= 512) &&
+            (display >= 15 && display <= 17)
+        )) {
+            tag.push("video_editing")
+        }
+        return tag;
     }
 
-    async getComputerById(computerId: number): Promise<any> {
+    async getComputer(min_price: number, max_price: number, student_level: string, hobbie: string): Promise<any[]> {
+
+        
         const { data, error } = await this.supabase
             .from('computer')
             .select('*')
-            .eq('computerId', computerId)
-            .single();
+            .gte('price', min_price) // Filter by minimum price
+            .lte('price', max_price) // Filter by maximum price
+            .contains('tag', [student_level, hobbie])
+            .limit(10);
         if (error) {
             throw error;
         }
+        console.log(data)
         return data;
     }
 
-    async updateComputer(computerId: number, computerData: any): Promise<any> {
+    async getComputerSL(min_price: number, max_price: number, student_level: string): Promise<any[]> {
+
+        
         const { data, error } = await this.supabase
             .from('computer')
-            .update(computerData)
-            .eq('computerId', computerId);
+            .select('*')
+            .gte('price', min_price) // Filter by minimum price
+            .lte('price', max_price) // Filter by maximum price
+            .contains('tag', student_level)
+            .limit(10);
         if (error) {
             throw error;
         }
+        console.log(data)
         return data;
     }
 
-    async deleteComputer(computerId: number): Promise<any> {
-        const { data, error } = await this.supabase
-            .from('computer')
-            .delete()
-            .eq('computerId', computerId);
-        if (error) {
-            throw error;
-        }
-        return data;
-    }
+    
+
+
 }
