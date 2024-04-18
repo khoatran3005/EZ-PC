@@ -42,16 +42,6 @@ export class UsersService {
     return data;
   }
 
-  async getUsers(): Promise<any[]> {
-    const { data, error } = await this.supabase
-      .from('users')
-      .select('*');
-    if (error) {
-      throw error;
-    }
-    return data;
-  }
-
   async getUserById(userId: number): Promise<any> {
     const { data, error } = await this.supabase
       .from('users')

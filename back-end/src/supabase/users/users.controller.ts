@@ -14,9 +14,11 @@ export class UsersController {
         return this.usersService.createUser(createUserDto);
     }
 
-    @Get()
-    async getUsers(): Promise<any[]> {
-        return this.usersService.getUsers();
+    @Get('login')
+    async login(
+        @Body() loginUserDto: LoginUserDto
+    ): Promise<any> {
+        return this.usersService.login(loginUserDto);
     }
 
     @Get(':id')
@@ -32,12 +34,5 @@ export class UsersController {
     @Delete(':id')
     async deleteUser(@Param('id') id: string): Promise<any> {
         return this.usersService.deleteUser(parseInt(id, 10));
-    }
-
-    @Post('login')
-    async login(
-        @Body() loginUserDto: LoginUserDto
-    ): Promise<any> {
-        return this.usersService.login(loginUserDto);
     }
 }
