@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { SupabaseService } from '../supabase.service';
 import { SupabaseClient } from '@supabase/supabase-js';
+import { createSavedComputerDto } from './dto/create-savedcomputer.dto';
 
 @Injectable()
 export class SavedComputerService {

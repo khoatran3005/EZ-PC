@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './Register.scss';
 import axios from 'axios';
-import {ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
 
@@ -31,37 +29,45 @@ const Register = () => {
 
             if (response.status >= 200 && response.status < 300) {
                 console.log('User registered successfully');
-                toast.success('Registration successful!', {autoClose: 2000});
-                setTimeout(() => window.location.href = '/login', 2500); // Redirect to Log-in in 2.5s
+                window.location.href = '/login';
             } else {
                 console.error('Registration failed');
-                toast.error('Registration failed');
             }
         } catch (error) {
             console.error('Error:', error.message);
-            toast.error('Registration failed. Review form and try again.');
         }
     };
 
     return (
         <>
-            <main id="main-content">
+            <main id="main-content" style={{  position: 'relative', /* Ensure proper positioning */
+    height: '100vh', /* Full viewport height */
+    background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', /* Gradient background */}}>
                 <div id="signup-container">
-                    <h1>Create an account</h1>
+                    
+                    <p className="kind">Create an account:</p>
+
                     <form id="create-account-form" onSubmit={handleSubmit}>
+                    <p className="reg">Name</p>
                         <input type="text" id="name" placeholder="Name" value={name} onChange={handleNameChange} />
+
+                        <p className="reg">Email address</p>
+
                         <input type="email" id="email" placeholder="Email address" value={email} onChange={handleEmailChange} />
+
+                        <p className="reg">Password</p>
                         <input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+
+                        <p className="reg">Retype Password</p>
                         <input type="password" id="retype-password" placeholder="Retype Password" value={retypePassword} onChange={handleRetypePasswordChange} />
                         <div className="checkbox-container">
+                            
                             <input type="checkbox" id="terms" checked={termsAgreed} onChange={handleTermsChange} />
                             <label htmlFor="terms">I agree to the terms & privacy policy</label>
                         </div>
                         <button type="submit" className="btn primary-btn" onClick={handleSubmit}>Sign Up</button>
                     </form>
                     <p className="signin-link">Have an account? <a href="/login">Sign In</a></p>
-
-                    <ToastContainer newestOnTop/>
                 </div>
             </main>
         </>

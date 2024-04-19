@@ -135,6 +135,8 @@ export class ComputerService {
     }
 
     async getComputer(min_price: number, max_price: number, student_level: string, hobbie: string): Promise<any[]> {
+
+
         const { data, error } = await this.supabase
             .from('computer')
             .select('*')

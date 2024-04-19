@@ -19,6 +19,7 @@ export class ComputerController {
         @Body('student_level') student_level: string,
         @Body('hobbie') hobbie: string): Promise<any[]> {
         return this.computerService.getComputer(parseInt(min_price), parseInt(max_price), student_level, hobbie);
+
     }
 
     @Get('compare')

@@ -1,5 +1,6 @@
 import { Controller, Post, Body, Get, Delete } from '@nestjs/common';
 import { SavedComputerService } from './savedcomputer.service';
+import { createSavedComputerDto } from './dto/create-savedcomputer.dto';
 
 @Controller('savedcomputer')
 export class SavedComputerController {

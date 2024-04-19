@@ -21,47 +21,61 @@ const Login = () => {
         setTermsAgreed(event.target.checked); // Update termsAgreed state based on checkbox status
     };
 
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|.(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Perform validation here if needed 
+        // Validate details
+
+        if (!validateEmail(email)) {
+            console.error('Registration Failed. Invalid Email.');
+            // also toast notify user -----
+        };
 
         // Once validated, send the data to the backend for authentication
         const userData = {
             email: email,
             password: password,
         };
-
+        console.log(userData)
         try {
-            const response = await axios.get('http://localhost:3000/users/login', userData);
+            const response = await axios.post('http://localhost:3000/users/login', userData);
             if (response.status >= 200 && response.status < 300) {
                 console.log(response.data);
                 toast.success(`Welcome back, ${response.data.name}`, { autoClose: 2000 }); // Send log-in success notif
                 setTimeout(() => window.location.href = '/', 2500); // Redirect Home in 2.5s
+                alert(`Welcome back ${response.data.name}`)
+                window.location.href = '/';
             } else {
-                console.error('Log-In failed');
-                toast.error('Log-In failed');
+                console.error('Registration failed');
             }
         } catch (error) {
-
-            // Code 401: Unauthorized, Incorrect Creds 
-            // Notify incorrect creds. (In practice, for us, specifically wrong pw)
-            if (error.response.status == 401) {
-                toast.error('Log-In Failed: Incorrect Credentials');
-
-            } else { // includes wrong username
-                console.error('Error:', error.message);
-                toast.error('Error');
-            }
+            console.error('Error:', error.message);
         }
     };
 
     return (
-        <main id="main-content">
+        <main id="main-content1" style={{
+            position: 'relative', /* Ensure proper positioning */
+            height: '100vh', /* Full viewport height */
+            background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', /* Gradient background */
+        }}>
             <div id="signup-container">
-                <h1>Login</h1>
+                <p className="kind1">Welcome Back!</p>
+                <p className="kind2">Enter your credentials to access your account:</p>
                 <form id="create-account-form" onSubmit={handleSubmit}>
+
+                    <p className="reg">Email address</p>
                     <input type="email" id="email" placeholder="Email address" value={email} onChange={handleEmailChange} />
+
+                    <p className="reg">Password</p>
                     <input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
                     <div className="checkbox-container">
                         <input type="checkbox" id="terms" checked={termsAgreed} onChange={handleTermsChange} />
