@@ -179,7 +179,7 @@ export class ComputerService {
             .select('*')
             .gte('price', min_price) // Filter by minimum price
             .lte('price', max_price) // Filter by maximum price
-            .contains('tag', student_level)
+            .contains('tag', [student_level])
             .limit(10);
         if (error) {
             throw error;

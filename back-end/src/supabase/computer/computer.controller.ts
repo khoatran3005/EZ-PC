@@ -18,8 +18,12 @@ export class ComputerController {
         @Body('max_price') max_price: string,
         @Body('student_level') student_level: string,
         @Body('hobbie') hobbie: string): Promise<any[]> {
-        return this.computerService.getComputer(parseInt(min_price), parseInt(max_price), student_level, hobbie);
-
+        console.log("check", hobbie)
+        if (hobbie === '') {
+            return this.computerService.getComputerSL(parseInt(min_price), parseInt(max_price), student_level)
+        } else {
+            return this.computerService.getComputer(parseInt(min_price), parseInt(max_price), student_level, hobbie);
+        }
     }
 
     @Get('compare')
@@ -31,7 +35,7 @@ export class ComputerController {
     // Below copied from commit 3116f38 "Merge branch 'testbranch' of ..."
     // This method's removal in commit b090811 "fix" caused issues.
 
-    @Post('computer') 
+    @Post('computer')
     async Computers(@Body() requestData: any): Promise<any> {
         try {
             const { min_price, max_price, student_level, hobby } = requestData;
