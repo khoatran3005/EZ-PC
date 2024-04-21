@@ -76,13 +76,27 @@ const Info = () => {
           console.log(response.data);
           navigate("/suggest", { state: { data: response.data } });
         });
+        
 
       // Redirect or do something else after submitting the form
     } catch (error) {
       console.error("Error submitting form:", error);
       // Handle the error if needed
     }
+
+    await axios
+    .post("http://localhost:3000/computer/computer", {
+      min_price: minValue,
+      max_price: maxValue,
+      student_level: studentLevel,
+      hobby: hobby,
+    })
+    .then((response) => {
+      console.log(response.data);
+      navigate("/suggest", { state: { data: response.data } });
+    });
   };
+
 
   return (
     <>

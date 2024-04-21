@@ -150,6 +150,40 @@ export class ComputerService {
         console.log(data)
         return data;
     }
+    //get computer with only student level provided
+    async getComputerSL(min_price: number, max_price: number, student_level: string): Promise<any[]> {
+
+
+        const { data, error } = await this.supabase
+            .from('computer')
+            .select('*')
+            .gte('price', min_price) // Filter by minimum price
+            .lte('price', max_price) // Filter by maximum price
+            .contains('tag', [student_level])
+            .limit(10);
+        if (error) {
+            throw error;
+        }
+        console.log(data)
+        return data;
+    }
+
+    async getComputerWithHobby(min_price: number, max_price: number, hobbie: string): Promise<any[]> {
+
+
+        const { data, error } = await this.supabase
+            .from('computer')
+            .select('*')
+            .gte('price', min_price) // Filter by minimum price
+            .lte('price', max_price) // Filter by maximum price
+            .contains('tag', [hobbie])
+            .limit(10);
+        if (error) {
+            throw error;
+        }
+        console.log(data)
+        return data;
+    }
 
     async compareComputer(computer_id_1: string, computer_id_2: string): Promise<any[]> {
         const { data: data1, error: error1 } = await this.supabase // get first computer information
@@ -171,20 +205,5 @@ export class ComputerService {
     // Below copied from commit 3116f38 "Merge branch 'testbranch' of ..."
     // This method's removal in commit b090811 "fix" caused issues.
 
-    async getComputerSL(min_price: number, max_price: number, student_level: string): Promise<any[]> {
-
-
-        const { data, error } = await this.supabase
-            .from('computer')
-            .select('*')
-            .gte('price', min_price) // Filter by minimum price
-            .lte('price', max_price) // Filter by maximum price
-            .contains('tag', [student_level])
-            .limit(10);
-        if (error) {
-            throw error;
-        }
-        console.log(data)
-        return data;
-    } // End of method copied from commit 3116f38
+     // End of method copied from commit 3116f38
 }

@@ -48,9 +48,9 @@ export class ComputerController {
                 return this.computerService.getComputerSL(min_price, max_price, student_level);
             }
             // Check if only hobby is provided
-            // else if (hobby) {
-            //     return this.computerService.getComputerWithHobby(min_price, max_price, hobby);
-            // }
+            else if (hobby) {
+                return this.computerService.getComputerWithHobby(min_price, max_price, hobby);
+            }
             // // If neither student_level nor hobby is provided
             // else {
             //     // Return all results without any filtering
