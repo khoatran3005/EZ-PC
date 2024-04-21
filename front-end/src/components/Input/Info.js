@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Info.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import infovid from "../../assets/infovid.mp4";
 import axios from "axios";
 

@@ -1,7 +1,7 @@
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header/Header';
-import Homepage from './components/Home/Homepage';
+// import Homepage from './components/Home/Homepage';
 import { Outlet } from "react-router-dom";
 
 function App() {
