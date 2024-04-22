@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Login.scss';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from '../../contexts/UserContext.js';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
+
+    const { user, setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [termsAgreed, setTermsAgreed] = useState(false); // Initialize termsAgreed state as false
@@ -21,45 +26,56 @@ const Login = () => {
         setTermsAgreed(event.target.checked); // Update termsAgreed state based on checkbox status
     };
 
-    const validateEmail = (email) => {
-        return String(email)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|.(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/
-            );
-    };
+    // const validateEmail = (email) => { // Not working, fix ---------------------
+    //     return String(email)
+    //         .toLowerCase()
+    //         .match(
+    //             /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|.(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/
+    //         );
+    // };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Validate details
 
-        if (!validateEmail(email)) {
-            console.error('Registration Failed. Invalid Email.');
-            // also toast notify user -----
-        };
+        // Not working, fix ---------------------
+        // if (!validateEmail(email)) {
+        //     console.error('Registration Failed. Invalid Email.');
+        //     toast.error('Registration Failed. Invalid Email.');
+        // };
 
         // Once validated, send the data to the backend for authentication
         const userData = {
             email: email,
             password: password,
         };
-        console.log(userData)
+        console.log(userData); // Remove in final, insecure, prints p/w in console ---------------------
         try {
             const response = await axios.post('http://localhost:3000/users/login', userData);
+            console.log('Response recieved from server.')
             if (response.status >= 200 && response.status < 300) {
                 console.log(response.data);
-                toast.success(`Welcome back, ${response.data.name}`, { autoClose: 2000 }); // Send log-in success notif
-                setTimeout(() => window.location.href = '/', 2500); // Redirect Home in 2.5s
-                alert(`Welcome back ${response.data.name}`)
-                window.location.href = '/';
+                setUser(response.data); // Set the user context to the response data
+                alert(`pause for debug purposes`) // remove ---------------------
+                console.log(`Successfully logged in as: ${response.data.name}`);
+                toast.success(`Welcome back, ${response.data.name}!`, { autoClose: 2000 }); // Send log-in success notif
+                setTimeout(() => navigate('/'), 2500); // Redirect Home in 2.5s
             } else {
-                console.error('Registration failed');
+                console.error('Log-In failed: Server issue.');
+                toast.error('Log-In failed: Server issue.');
             }
         } catch (error) {
-            console.error('Error:', error.message);
+            console.error('Log-In failed. Error:', error.message);
+            toast.error('Log-In failed: Unknown Error.');
         }
     };
+
+    useEffect(() => {
+        if (user) {
+            navigate('/'); // Redirect to Home if user is already logged in
+        }
+    }, [user]);
 
     return (
         <main id="main-content1" style={{
@@ -83,7 +99,7 @@ const Login = () => {
                     </div>
                     <button type="submit" className="btn primary-btn">Log In</button>
                 </form>
-                <p className="signin-link">Don't have an account? <a href="/register">Sign up</a></p>
+                <p className="signin-link">Don't have an account? <Link to="/register">Sign up</Link></p>
 
                 <ToastContainer newestOnTop />
             </div>

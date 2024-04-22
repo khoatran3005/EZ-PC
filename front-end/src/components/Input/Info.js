@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Info.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import infovid from "../../assets/infovid.mp4";
 import axios from "axios";
 
@@ -183,7 +183,7 @@ const Info = () => {
                 </select>
               </div>
               <div id="test">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
 
               </div>
             </div>

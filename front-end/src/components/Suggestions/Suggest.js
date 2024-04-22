@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import { UserContext } from '../../contexts/UserContext';
 import ReactPaginate from 'react-paginate';
 import './suggest.scss';
 import axios from 'axios';
 
 
 const Suggest = () => {
+  const { user } = useContext(UserContext);
   const [computers, setComputers] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(4);
   const location = useLocation();
 
-  const handleSave = async function (event) {
+  const handleSave = async (computer_id, computer_name) => {
 
     // Placeholder hard-coded IDs.
     const saveData = {
-      user_id: 67, // "Mo, mo@gmail.com"
-      computer_id: "64dbf56d4bed3271751a4ca2",
+      user_id: user.userid,
+      computer_id: computer_id,
     }
 
     try {
@@ -24,12 +27,14 @@ const Suggest = () => {
 
       console.log(response.data);
       if (response.status >= 200 && response.status < 300) {
-        alert(`Welcome back ${response.data.name}`)
+        toast.success(computer_name + ` saved successfully.`);
       } else {
-        console.error('Failed to save computer.');
+        console.error('Failed to save: ' + computer_name + ', computer_id: ' + computer_id + '.');
+        toast.error('Failed to save ' + computer_name + ': Server issue.');
       }
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error('Save failed. Error:', error.message);
+      toast.error('Failed to save ' + computer_name + ': Unknown error.');
     }
 
   }
@@ -84,7 +89,7 @@ const Suggest = () => {
                   <h4 className="mr-1">${computer.price}</h4>
                 </div>
                 <div className="d-flex flex-column mt-4">
-                  <button className="btn btn-primary btn-sm" type="button" onClick={handleSave}>Save</button>
+                  <button className="btn btn-primary btn-sm" type="button" onClick={() => { handleSave(computer.id, computer.name) }}>Save</button>
                   <button className="btn btn-outline-primary btn-sm mt-2" type="button">Compare</button></div>
               </div>
             </div>
@@ -102,6 +107,7 @@ const Suggest = () => {
         disabledClassName={"pagination_disabled"}
         activeClassName={"pagination_active"}
       />
+      <ToastContainer />
     </div>
   );
 };

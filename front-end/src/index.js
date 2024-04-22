@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -13,27 +13,37 @@ import {
 import Homepage from './components/Home/Homepage';
 import Info from './components/Input/Info';
 import Suggestions from './components/Suggestions/Suggest';
+import { UserContext } from './contexts/UserContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route element={<App />}>
-        <Route path="/" element={<Homepage />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="/info" element={<Info />} />
-        <Route path="/computerList" element={<computerList />} />
-        <Route path="/suggest" element={<Suggestions />} />
 
-      </Route>
-    </Routes>
-  </BrowserRouter>
-  // <React.StrictMode>
+function AppWrapper() {
+  const [user, setUser] = useState();
 
-  /* </React.StrictMode> */
-);
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<App />}>
+            <Route path="/" element={<Homepage />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="/info" element={<Info />} />
+            <Route path="/computerList" element={<computerList />} />
+            <Route path="/suggest" element={<Suggestions />} />
+
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserContext.Provider>
+    // <React.StrictMode>
+
+    /* </React.StrictMode> */
+  );
+}
+
+root.render(<AppWrapper />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Register.scss';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
 const Register = () => {
+    const navigate = useNavigate();
 
+    const { user } = useContext(UserContext);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,7 +33,7 @@ const Register = () => {
 
             if (response.status >= 200 && response.status < 300) {
                 console.log('User registered successfully');
-                window.location.href = '/login';
+                navigate('/login');
             } else {
                 console.error('Registration failed');
             }
@@ -37,6 +41,12 @@ const Register = () => {
             console.error('Error:', error.message);
         }
     };
+
+    useEffect(() => {
+        if (user) {
+            navigate('/'); // Redirect to Home if user is already logged in
+        }
+    }, [user]);
 
     return (
         <>
@@ -72,7 +82,7 @@ const Register = () => {
                         </div>
                         <button type="submit" className="btn primary-btn" onClick={handleSubmit}>Sign Up</button>
                     </form>
-                    <p className="signin-link">Have an account? <a href="/login">Sign In</a></p>
+                    <p className="signin-link">Have an account? <Link to="/login">Sign In</Link></p>
                 </div>
             </main>
         </>
