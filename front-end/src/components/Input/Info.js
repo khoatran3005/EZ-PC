@@ -42,26 +42,6 @@ const Info = () => {
     setHobby(event.target.value);
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     // const response = await axios.post('http://localhost:3000/users/login', userData);
-  //     // Send user input to the back-end
-  //     await fetch('http://localhost:3000/computers', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ min_price: minValue, max_price: maxValue, student_level: studentLevel, hobbie: hobby }),
-  //     });
-  //     // Redirect to the Suggest page after submitting the form
-  //   } catch (error) {
-  //     console.error('Error submitting form:', error);
-  //     // Handle error if needed
-  //   }
-
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -76,7 +56,7 @@ const Info = () => {
           console.log(response.data);
           navigate("/suggest", { state: { data: response.data } });
         });
-        
+
 
       // Redirect or do something else after submitting the form
     } catch (error) {
@@ -85,16 +65,16 @@ const Info = () => {
     }
 
     await axios
-    .post("http://localhost:3000/computer/computer", {
-      min_price: minValue,
-      max_price: maxValue,
-      student_level: studentLevel,
-      hobby: hobby,
-    })
-    .then((response) => {
-      console.log(response.data);
-      navigate("/suggest", { state: { data: response.data } });
-    });
+      .post("http://localhost:3000/computer/computer", {
+        min_price: minValue,
+        max_price: maxValue,
+        student_level: studentLevel,
+        hobby: hobby,
+      })
+      .then((response) => {
+        console.log(response.data);
+        navigate("/suggest", { state: { data: response.data } });
+      });
   };
 
 
@@ -103,18 +83,20 @@ const Info = () => {
       <div
         className="container2"
         style={{
-          position: "relative" /* Ensure proper positioning */,
-          height: "100vh" /* Full viewport height */,
+          position: "relative",
+          height: "100vh",
           background:
             "linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)" /* Gradient background */,
+          marginTop: '0', paddingTop: '5px'
         }}
       >
+        <div className="kind"><p>Kindly provide the information below:</p></div>
+
         <div
-          className="container" /*style={{ backgroundImage: `url(${ill})` }}*/
+          className="container"
         >
           <form className="form" onSubmit={handleSubmit}>
             <div id="input" className="input">
-              <p className="kind">Kindly provide the information below:</p>
               <p className="head">Budget:</p>
               <div className="price-input">
                 <div className="field">
@@ -142,7 +124,7 @@ const Info = () => {
                 <div
                   className="progress"
                   style={{
-                    width: `${((maxValue - minValue) / 10000) * 100}%`, // Assuming 10000 is the total range
+                    width: `${((maxValue - minValue) / 10000) * 100}%`,
                     left: `${(minValue / 10000) * 100}%`,
                   }}
                 ></div>

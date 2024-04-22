@@ -202,8 +202,5 @@ export class ComputerService {
         }
         return [data1, data2];
     }
-    // Below copied from commit 3116f38 "Merge branch 'testbranch' of ..."
-    // This method's removal in commit b090811 "fix" caused issues.
 
-     // End of method copied from commit 3116f38
 }

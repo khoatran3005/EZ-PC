@@ -1,111 +1,122 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 
-body{background:#eee}
+body {
+  background: #eee
+}
+
 .Sug {
-    font-family: 'Poppins', sans-serif; /* Use Poppins font */
-    font-weight: bold; /* Make the text bold */
-    font-size: 2.2em; /* Set the font size to 1.2 times the default size */
-    margin-left: 170px;
-    padding-top: 50px; /* Add padding to the top */
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 168px;
+  max-width: 1200px;
+  background-color: #ffffff;
+  padding: 5px;
+  padding-bottom: 0.0005%;
+  padding-left: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 25px;
+  margin-top: 30px;
 
+}
 
-  }
-.ratings i{font-size: 16px;
-           color: red}
-.strike-text{color: red;
-             text-decoration: line-through}
-.product-image{width: 100%}
-.dot{height: 7px;
-    width: 7px;
-    margin-left: 6px;
-    margin-right: 6px;
-    margin-top: 3px;
-    background-color: blue;
-    border-radius: 50%;
-    display: inline-block}
-.spec-1{color: #938787;
-        font-size: 15px;
-        font-family: 'Montserrat', sans-serif;
+.ratings i {
+  font-size: 16px;
+  color: red
+}
 
-    }
- h5{font-weight: 400;
-    font-family: 'Montserrat', sans-serif;
+.strike-text {
+  color: red;
+  text-decoration: line-through
+}
+
+.product-image {
+  width: 100%
+}
+
+.spec-1 {
+  color: #938787;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+h5 {
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
 
 
 }
-h4{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
 
 }
-.mr-3{
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    padding-top: 10px;
+
+.mr-3 {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  padding-top: 10px;
 
 }
- .para{font-size: 16px}
 
- .col-md-10{
-    padding: 10px;
-    max-width: 1200px;
-    height: 10px;
- }
-
- .flex-row > div {
-    margin-top: 50px; /* Example margin */
+.para {
+  font-size: 16px
 }
+
+.col-md-10 {
+  max-width: 1200px;
+  height: 10px;
+  width: 1200px;
+  margin-left: 15px;
+}
+
+.flex-row>div {
+  margin-top: 50px;
+}
+
 .flex-column .mr-3 {
-    text-align: left; /* Left-align the content */
-}
-
-.Scontainer {
-    position: relative;
-    height: 100vh; /* Cover the entire viewport height */
-    width: 100vw; /* Cover the entire viewport width */
-    margin: 0; /* Remove margin */
-    // padding: 0; /* Remove padding */
-    padding-bottom: 100px; /* Space for the pagination component */
-    padding-top: 90px; /* Add padding to the top */
-    background: linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%);
+  text-align: left;
 }
 
 .pagination {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    margin-top: 1300px;
-    color:#FFF; 
-  }
-  
-  .pagination li {
-    margin: 0 5px;
-  }
-  
-  .pagination a {
-    display: inline-block;
-    padding: 8px 16px;
-    color: #fff;
-    background-color: #3a75ac;
-    border-radius: 4px;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .pagination a:hover {
-    background-color: #2a567b;
-  }
-  
-  .previous_page, .next_page {
-    font-weight: bold;
-  }
-  
-  .pagination_disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  .pagination_active {
-    color: #4d4d4d; /* Change color for active page */
-  }
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 1300px;
+  color: #FFF;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 8px 16px;
+  color: #fff;
+  background-color: #3a75ac;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pagination a:hover {
+  background-color: #2a567b;
+}
+
+.previous_page,
+.next_page {
+  font-weight: bold;
+}
+
+.pagination_disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pagination_active {
+  color: #4d4d4d;
+}

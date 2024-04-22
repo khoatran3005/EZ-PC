@@ -32,9 +32,6 @@ export class ComputerController {
         return this.computerService.compareComputer(computer_id_1, computer_id_2);
     }
 
-    // Below copied from commit 3116f38 "Merge branch 'testbranch' of ..."
-    // This method's removal in commit b090811 "fix" caused issues.
-
     @Post('computer')
     async Computers(@Body() requestData: any): Promise<any> {
         try {
@@ -51,14 +48,10 @@ export class ComputerController {
             else if (hobby) {
                 return this.computerService.getComputerWithHobby(min_price, max_price, hobby);
             }
-            // // If neither student_level nor hobby is provided
-            // else {
-            //     // Return all results without any filtering
-            //     return this.computerService.getComputer(min_price, max_price);
-            // }
+
         } catch (error) {
             console.error('An error occurred in the Computers() method:', error);
             throw error; // Optionally re-throw the error if necessary
         }
-    }    // End of method copied from commit 3116f38
+    }
 }

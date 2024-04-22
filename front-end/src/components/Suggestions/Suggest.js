@@ -8,11 +8,11 @@ import axios from 'axios';
 const Suggest = () => {
   const [computers, setComputers] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage] = useState(4); // Change this value as per your requirement
+  const [itemsPerPage] = useState(4);
   const location = useLocation();
 
-  const handleSave = async function(event){
-    
+  const handleSave = async function (event) {
+
     // Placeholder hard-coded IDs.
     const saveData = {
       user_id: 67, // "Mo, mo@gmail.com"
@@ -24,9 +24,9 @@ const Suggest = () => {
 
       console.log(response.data);
       if (response.status >= 200 && response.status < 300) {
-          alert(`Welcome back ${response.data.name}`)
+        alert(`Welcome back ${response.data.name}`)
       } else {
-          console.error('Failed to save computer.');
+        console.error('Failed to save computer.');
       }
     } catch (error) {
       console.error('Error:', error.message);
@@ -41,14 +41,14 @@ const Suggest = () => {
     }
   }, [location.state]);
 
-    // Function to scroll to the top of the page
-    const scrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth" // Optional smooth scrolling animation
-      });
-    };
-  
+  // Function to scroll to the top of the page
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
 
   const offset = currentPage * itemsPerPage;
   const pageCount = Math.ceil(computers.length / itemsPerPage);
@@ -62,12 +62,12 @@ const Suggest = () => {
   const currentItems = computers.slice(offset, offset + itemsPerPage);
 
   return (
-    <div className="Scontainer" style={{ position: 'relative', minHeight: '200vh', maxHeight: '5000vh', width: '100vw', background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', margin: '0', padding: '0' }}>
-      <p className="Sug">Here are some suggestions for you:</p>
+    <div className="Scontainer" style={{ minHeight: '200vh', maxHeight: '5000vh', width: '1520px', background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', marginTop: '0', paddingTop: '5px' }}>
+      <div className="Sug"><p >Here are personalized laptop recommendations tailored just for you:</p></div>
       <div className="d-flex justify-content-center row">
         <div className="col-md-10">
           {currentItems.map(computer => (
-            <div key={computer.id} className="row p-2 bg-white border rounded">
+            <div key={computer.id} className="row p-2 bg-white border">
               <div className="col-md-3 mt-1"><img className="img-fluid img-responsive rounded product-image" src={computer.image[0]} alt={`${computer.company} ${computer.name}`} /></div>
               <div className="col-md-6 mt-1">
                 <h5>{computer.name}</h5>

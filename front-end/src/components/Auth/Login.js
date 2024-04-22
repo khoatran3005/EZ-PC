@@ -63,8 +63,8 @@ const Login = () => {
 
     return (
         <main id="main-content1" style={{
-            position: 'relative', /* Ensure proper positioning */
-            height: '100vh', /* Full viewport height */
+            position: 'relative',
+            height: '100vh',
             background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', /* Gradient background */
         }}>
             <div id="signup-container">
@@ -79,7 +79,7 @@ const Login = () => {
                     <input type="password" id="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
                     <div className="checkbox-container">
                         <input type="checkbox" id="terms" checked={termsAgreed} onChange={handleTermsChange} />
-                        <label htmlFor="terms">I agree to the terms & privacy policy</label>
+                        <label htmlFor="terms" id="ag">I agree to the terms & privacy policy</label>
                     </div>
                     <button type="submit" className="btn primary-btn">Log In</button>
                 </form>
