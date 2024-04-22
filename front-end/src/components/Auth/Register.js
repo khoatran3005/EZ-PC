@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Register.scss';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
 const Register = () => {
     const navigate = useNavigate();
 
+    const { user } = useContext(UserContext);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -39,6 +41,12 @@ const Register = () => {
             console.error('Error:', error.message);
         }
     };
+
+    useEffect(() => {
+        if (user) {
+            navigate('/'); // Redirect to Home if user is already logged in
+        }
+    }, [user]);
 
     return (
         <>
