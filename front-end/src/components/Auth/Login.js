@@ -75,7 +75,7 @@ const Login = () => {
         if (user) {
             navigate('/'); // Redirect to Home if user is already logged in
         }
-    }, [user]);
+    }, [user, navigate]);
 
     return (
         <main id="main-content1" style={{

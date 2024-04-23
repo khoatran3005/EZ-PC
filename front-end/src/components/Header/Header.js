@@ -13,7 +13,7 @@ const Header = () => {
                 </div>
 
                 <ul id="HLS">
-                    <button id="signup-btn" class="btn"><Link to="/register" className='nav-link'>Sign Up</Link></button>
+                    <button id="signup-btn" className="btn"><Link to="/register" className='nav-link'>Sign Up</Link></button>
 
                     <Link to="/login" className='nav-link'>Login</Link>
                     <Link to="/" className='nav-link'>Home</Link>

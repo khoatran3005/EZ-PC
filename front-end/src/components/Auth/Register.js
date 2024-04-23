@@ -46,7 +46,7 @@ const Register = () => {
         if (user) {
             navigate('/'); // Redirect to Home if user is already logged in
         }
-    }, [user]);
+    }, [user, navigate]);
 
     return (
         <>
