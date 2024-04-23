@@ -16,16 +16,18 @@ export class SavedComputerController {
     }
 
     @Get()
-    async getSavedComputer(
-        @Body('saved_id') saved_id: string
+    async getSavedComputers(
+        @Body('user_id') user_id: string,
     ): Promise<any> {
-        return this.savedComputerService.getSavedComputer(saved_id);
+        console.log(`controller, user_id: ${user_id}`);
+        return this.savedComputerService.getSavedComputers(parseInt(user_id));
     }
 
     @Delete()
     async deleteComputer(
-        @Body('saved_id') saved_id: string
+        @Body('user_id') user_id: number,
+        @Body('computer_id') computer_id: string
     ): Promise<any> {
-        return this.savedComputerService.deleteSavedComputer(saved_id);
+        return this.savedComputerService.deleteSavedComputer(user_id, computer_id);
     }
 }

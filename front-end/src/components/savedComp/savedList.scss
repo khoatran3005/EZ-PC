@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+body {
+  background: #eee
+}
+
+.Sug {
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 168px;
+  max-width: 1200px;
+  background-color: #ffffff;
+  padding: 5px;
+  padding-bottom: 0.0005%;
+  padding-left: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 25px;
+  margin-top: 30px;
+
+}
+
+.ratings i {
+  font-size: 16px;
+  color: red
+}
+
+.strike-text {
+  color: red;
+  text-decoration: line-through
+}
+
+.product-image {
+  width: 100%
+}
+
+.spec-1 {
+  color: #938787;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+h5 {
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+
+
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+
+}
+
+.mr-3 {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  padding-top: 10px;
+
+}
+
+.para {
+  font-size: 16px
+}
+
+.col-md-10 {
+  max-width: 1200px;
+  height: 10px;
+  width: 1200px;
+  margin-left: 15px;
+}
+
+.flex-row>div {
+  margin-top: 50px;
+}
+
+.flex-column .mr-3 {
+  text-align: left;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 1300px;
+  color: #FFF;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 8px 16px;
+  color: #fff;
+  background-color: #3a75ac;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pagination a:hover {
+  background-color: #2a567b;
+}
+
+.previous_page,
+.next_page {
+  font-weight: bold;
+}
+
+.pagination_disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pagination_active {
+  color: #4d4d4d;
+}

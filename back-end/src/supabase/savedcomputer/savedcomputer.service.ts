@@ -32,23 +32,45 @@ export class SavedComputerService {
         }
     }
 
-    async getSavedComputer(saved_id): Promise<any> {
-        const { data, error } = await this.supabase
+    async getSavedComputers(user_id): Promise<any> {
+        console.log(`getSavedComputers(user_id: ${user_id})`);
+
+        // Get user's computer_ids from savedComputer
+        const { data: savedData, error: savedError } = await this.supabase
             .from('savedcomputer')
-            .select('*')
-            .eq('saved_id', saved_id)
-            .single();
-        if (error) {
-            throw error;
+            .select('computer_id')
+            .eq('user_id', user_id);
+
+        if (savedError) {
+            console.error("Error getting saved computer_ids from user_id: ", savedError);
+            throw savedError;
         }
-        return data;
+        console.log("savedData: ", savedData);
+        // Get Computer data from Computer using computer_ids
+        const { data: computerData, error: computerError } = await this.supabase
+            .from('computer')
+            .select('*')
+            .in('id',
+                (savedData || [])
+                    .map((saved) => saved.computer_id)
+            );
+
+        if (computerError) {
+            console.error("Error getting computers from saved computer_ids: ", computerError);
+            throw computerError;
+        }
+
+        console.log("computerData: ", computerData)
+        return computerData;
     }
 
-    async deleteSavedComputer(saved_id): Promise<void> {
+    async deleteSavedComputer(user_id, computer_id): Promise<void> {
         const { data, error } = await this.supabase
             .from('savedcomputer')
             .delete()
-            .eq('saved_id', saved_id)
+            .eq('user_id', user_id)
+            .eq('computer_id', computer_id)
+            .single();
         if (error) {
             throw error;
         }
