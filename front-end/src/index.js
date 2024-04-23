@@ -13,6 +13,7 @@ import {
 import Homepage from './components/Home/Homepage';
 import Info from './components/Input/Info';
 import Suggestions from './components/Suggestions/Suggest';
+import SavedList from './components/savedComp/savedList';
 import { UserContext } from './contexts/UserContext';
 
 
@@ -30,7 +31,7 @@ function AppWrapper() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="/info" element={<Info />} />
-            <Route path="/computerList" element={<computerList />} />
+            <Route path="/saved" element={<SavedList />} />
             <Route path="/suggest" element={<Suggestions />} />
 
           </Route>
