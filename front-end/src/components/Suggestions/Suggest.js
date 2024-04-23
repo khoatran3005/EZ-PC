@@ -16,7 +16,13 @@ const Suggest = () => {
 
   const handleSave = async (computer_id, computer_name) => {
 
-    // Placeholder hard-coded IDs.
+    // Ensure user is logged in to prevent null user_id
+    if (!user) {
+      console.log('Server save request not sent. Refusing to save because User not logged in.');
+      toast.warn('Failed to save: You must be logged in to save computers.');
+      return;
+    }
+
     const saveData = {
       user_id: user.userid,
       computer_id: computer_id,
