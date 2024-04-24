@@ -93,42 +93,33 @@ export class ComputerService {
         display: number
     ): Promise<any> => {
         let tag: string[] = [];
-        if (ram === 8 && storage.space === 512 && display === 14) {
+        if (ram <= 8) {
             tag.push("elementary")
         }
-        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i3') &&
-            (ram >= 8 && ram <= 16) &&
-            (storage.space >= 512 && storage.space <= 1024) &&
-            (display >= 14 && display <= 15)
-        )) {
+        if (
+            (ram >= 8 && ram <= 16) 
+        ) {
             tag.push("middle_school")
         }
-        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i5') &&
-            (ram === 16) &&
-            (storage.space >= 512 && storage.space <= 1024) &&
-            (display >= 15 && display <= 16)
-        )) {
+        if (
+            (ram >= 8 && ram <= 16)
+        ) {
             tag.push("high_school")
         }
-        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i7') || processor.model.startsWith('Core i9') &&
-            (ram >= 16) &&
-            (storage.space >= 512) &&
-            (display >= 15 && display <= 16)
-        )) {
+        if (
+            (ram >= 16 && ram <= 32)
+        ) {
             tag.push("college")
         }
-        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i7') || processor.model.startsWith('Core i9') &&
-            (ram >= 16) &&
-            (storage.space >= 512) &&
-            (display >= 15 && display <= 17)
-        )) {
+        if (
+            (ram >= 16)
+        
+        ) {
             tag.push("gaming")
         }
-        if ((processor.type === 'ryzen' || processor.model.startsWith('Core i7') || processor.model.startsWith('Core i9') &&
-            (ram >= 16) &&
-            (storage.space >= 512) &&
-            (display >= 15 && display <= 17)
-        )) {
+        if (
+            (ram >= 16)
+        ) {
             tag.push("video_editing")
         }
         return tag;
@@ -143,7 +134,7 @@ export class ComputerService {
             .gte('price', min_price) // Filter by minimum price
             .lte('price', max_price) // Filter by maximum price
             .contains('tag', [student_level, hobbie])
-            .limit(10);
+            .limit(50);
         if (error) {
             throw error;
         }
@@ -160,7 +151,7 @@ export class ComputerService {
             .gte('price', min_price) // Filter by minimum price
             .lte('price', max_price) // Filter by maximum price
             .contains('tag', [student_level])
-            .limit(10);
+            .limit(50);
         if (error) {
             throw error;
         }
@@ -177,7 +168,7 @@ export class ComputerService {
             .gte('price', min_price) // Filter by minimum price
             .lte('price', max_price) // Filter by maximum price
             .contains('tag', [hobbie])
-            .limit(10);
+            .limit(50);
         if (error) {
             throw error;
         }
