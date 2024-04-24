@@ -29,28 +29,36 @@ const SavedList = () => {
 
   const handleDelete = async (computer_id, computer_name) => {
 
-    const deleteData = {
-      user_id: user.userid,
-      computer_id: computer_id,
-    }
+    // let userIdData = new URLSearchParams();
+    // userIdData.append('user_id', user.userid, 'computer_id', computer_id);
 
-    try {
-      console.log("Sending delete request to server.")
-      const response = await axios.delete('http://localhost:3000/savedcomputer', deleteData);
-
-      console.log(`Server Responded: ${response.data}`);
-
-      if (response.status >= 200 && response.status < 300) {
-        toast.success(computer_name + ` deleted successfully.`);
-      } else {
-        console.error('Failed to delete: ' + computer_name + ', computer_id: ' + computer_id + '.');
-        toast.error('Failed to delete ' + computer_name + ': Server issue.');
+    axios({
+      method: 'delete',
+      url: 'http://localhost:3000/savedcomputer',
+      params: { user_id: user.userid, computer_id: computer_id },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
-    } catch (error) {
-      console.error('Deletion failed. Error:', error.message);
-      toast.error('Failed to delete ' + computer_name + ': Unknown error.');
-    }
+    })
+      .then(response => {
+        console.log(response);
+        console.log(`Server Responded: ${response.data}`);
 
+        if (response.status >= 200 && response.status < 300) {
+          console.log('Computer deleted successfully: ', computer_name);
+          toast.success('Computer deleted successfully: ', computer_name);
+
+        } else {
+          console.error('Failed to delete computer: Server issue.');
+          toast.error('Failed to delete computer: Server issue.');
+        }
+
+      })
+      .catch(error => {
+        console.error(error);
+        console.error('Failed to delete computer: Unknown error: ', error.message);
+        toast.error('Failed to delete saved computer: Unknown error.');
+      });
   }
 
   // Function to scroll to the top of the page
@@ -70,7 +78,7 @@ const SavedList = () => {
 
   };
 
-  const setSavedComputers = async () => { // Function to get saved computers from the server
+  useEffect(() => { // Function to get saved computers from the server
 
     // Ensure user is logged in to prevent null user_id
     if (!user) {
@@ -79,49 +87,35 @@ const SavedList = () => {
       return;
     }
 
-    const userIdData = {
-      user_id: user.userid,
-    }
-
-    try {
-      console.log("Sending savedComputer get request to server.")
-      const response = await axios.get('http://localhost:3000/savedcomputer', 67);
-
-      console.log(`Server Responded: ${response.data}`);
-
-      if (response.status >= 200 && response.status < 300) {
-        setComputers(response.data);
-
-      } else {
-        console.error('Failed to get saved computers: Server issue.');
-        toast.error('Failed to get saved computers: Server issue.');
+    axios({
+      method: 'get',
+      url: 'http://localhost:3000/savedcomputer',
+      params: { user_id: user.userid },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
-    } catch (error) {
-      console.error('Failed to get saved computers: Unknown error.');
-      toast.error('Failed to get saved computers: Unknown error.');
-    }
-  }
+    })
+      .then(response => {
+        console.log(response);
+        console.log(`Server Responded: ${response.data}`);
 
-  // const getComputers = async () => { // Function to get a computer from the server
+        if (response.status >= 200 && response.status < 300) {
+          setComputers(response.data);
+          console.log('Saved computers retrieved successfully.');
 
-  //     try {
-  //       console.log("Sending get request to server.")
-  //       const response = await axios.get('http://localhost:3000/computer');
+        } else {
+          console.error('Failed to get saved computers: Server issue.');
+          toast.error('Failed to get saved computers: Server issue.');
+        }
 
-  //       console.log(`Server Responded: ${response.data}`);
+      })
+      .catch(error => {
+        console.error(error);
+        console.error('Failed to get saved computers: Unknown error: ', error.message);
+        toast.error('Failed to get saved computers: Unknown error.');
+      });
+  }, [user]);
 
-  //       if (response.status >= 200 && response.status < 300) {
-  //         setComputers(response.data);
-  //       } else {
-  //         console.error('Failed to get computers: Server issue.');
-  //         toast.error('Failed to get computers: Server issue.');
-  //       }
-  //     } catch (error) {
-  //       console.error('Failed to get computers: Unknown error.');
-  //       toast.error('Failed to get computers: Unknown error.');
-  //     }
-  // }
-  setSavedComputers();
   const currentItems = computers.slice(offset, offset + itemsPerPage);
 
   return (
@@ -147,7 +141,7 @@ const SavedList = () => {
                   <h4 className="mr-1">${computer.price}</h4>
                 </div>
                 <div className="d-flex flex-column mt-4">
-                  <button className="btn btn-primary btn-sm" type="button" onClick={() => { handleDelete(computer.id, computer.name) }}>Save</button>
+                  <button className="btn btn-primary btn-sm" type="button" onClick={() => { handleDelete(computer.id, computer.name) }}>Delete</button>
                   <button className="btn btn-outline-primary btn-sm mt-2" type="button">Compare</button></div>
               </div>
             </div>
