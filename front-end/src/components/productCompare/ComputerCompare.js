@@ -1,88 +1,78 @@
-import React from 'react';
-import './ComputerList.scss';
+import React, { useEffect, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import supabase from '../config/SupabaseClient';
+import './ComputerCompare.scss';
 
-const ComputerList = () => {
+
+const ComputerCompare = () => {
+  const location = useLocation();
+  const { ids } = location.state; // Get the IDs of the computers to compare
+  const [computers, setComputers] = useState([]);
+  const [loading, setLoading] = useState(true); // To manage loading state
+  const [error, setError] = useState(null); // To manage errors
+
+ 
+
+  useEffect(() => {
+    const fetchComputers = async () => {
+      const { data, error } = await supabase
+        .from('computer')
+        .select('*')
+        .in('id', ids); // Get the computers by IDs
+
+      if (error) {
+        setError(error.message);
+      } else {
+        setComputers(data);
+      }
+
+      setLoading(false);
+    };
+
+    fetchComputers(); // Fetch the computers to compare
+  }, [ids]); // Dependency on IDs
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
-    <div className="container mt-100">
-      <div className="row">
-        <div className="col-md-4 col-sm-6">
-          <div className="card mb-30">
-            <div className="card-body text-center">
-              <h4 className="card-title">Test Computer</h4>
-              <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur fermentum felis, vel efficitur dolor volutpat nec. Nullam nec blandit neque.</p>
-              <p>Model: Test Model</p>
-              <p>SKU: 123456</p>
-              <div className="actions">
-                <button>Compare</button>
-                <button>Save</button>
-              </div>
+    <div className="compare-container">
+      <h1>Compare Computers</h1>
+      <div className="comparison-grid">
+        {computers.map((computer) => (
+          <div key={computer.id} className="computer-specs">
+            <div className="spec"> 
+            <img
+                src={computer.image[0]} // Assuming there's an array of images
+                alt={`${computer.name} image`}
+                className="small-img" // Apply a class for smaller image
+            />
             </div>
+            <div className="spec"><strong>Model Name:</strong> {computer.name}</div>
+            <div className="spec"><strong>Operating System:</strong> {computer.os}</div>
+            <div className="spec"><strong>Ram Memory:</strong> {computer.ram} GB</div>
+            <div class="spec"><strong>Storage:</strong> {computer.storage.space} GB {computer.storage.type}</div>
+            <div class="spec"><strong>Processor:</strong> {computer.processor.type} {computer.processor.model}</div>
+            <div class="spec"><strong>Display:</strong> {computer.display} inches</div>
+            
           </div>
-        </div>
+        ))}
+
+       
+      </div>
+
+      <div>
+        <button className="btn">
+          <Link to="/suggest" className="nav-link">Back</Link>
+        </button>
       </div>
     </div>
   );
 };
 
-export default ComputerList;
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import './computerList.scss';
-// import { Link } from "react-router-dom";
-
-
-// // const computerList = () => {
-// //   const [computers, setComputers] = useState([]);
-// //   const [loading, setLoading] = useState(true);
-// //   const [error, setError] = useState(null);
-
-
-// //   useEffect(() => {
-// //     // Replace 'your-api-endpoint' with the actual endpoint where you fetch the computer data
-// //     fetch('your-api-endpoint')
-// //       .then(response => {
-// //         if (!response.ok) {
-// //           throw new Error('Network response was not ok');
-// //         }
-// //         return response.json();
-// //       })
-// //       .then(data => {
-// //         setComputers(data); // Assuming your response is the array of computers
-// //         setLoading(false);
-// //       })
-// //       .catch(error => {
-// //         console.error('There has been a problem with your fetch operation:', error);
-// //         setError(error.message);
-// //         setLoading(false);
-// //       });
-// //   }, []); // The empty array causes this effect to only run on mount
-
-// //   if (loading) return <div>Loading...</div>;
-// //   if (error) return <div>Error: {error}</div>;
-
-// //   return (
-// //     <div className="computer-list">
-// //       {computers.map(computer => (
-// //         <div key={computer.id} className="computer">
-// //           <img src={computer.image} alt={computer.name} />
-// //           <h3>{computer.name}</h3>
-// //           <p>{computer.specs}</p>
-// //           <p>Model: {computer.model}</p>
-// //           <p>SKU: {computer.sku}</p>
-// //           <div className="rating">{`⭐ (${computer.rating})`}</div>
-// //           <div className="availability">
-// //             <p>Pick up on {computer.pickUpDate}</p>
-// //             <p>Get it by {computer.deliveryDate}</p>
-// //           </div>
-// //           <div className="actions">
-// //             <button>Compare</button>
-// //             <button>Save</button>
-// //           </div>
-// //         </div>
-// //       ))}
-// //     </div>
-// //   );
-// // };
+export default ComputerCompare;

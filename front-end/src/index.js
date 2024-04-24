@@ -13,6 +13,8 @@ import {
 import Homepage from './components/Home/Homepage';
 import Info from './components/Input/Info';
 import Suggestions from './components/Suggestions/Suggest';
+import ComputerCompare from './components/productCompare/ComputerCompare';
+import ProductDetails from './components/Details/ProductDetails';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,9 +26,10 @@ root.render(
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="/info" element={<Info />} />
-        <Route path="/computerList" element={<computerList />} />
         <Route path="/suggest" element={<Suggestions />} />
-
+        <Route path="/computercompare" element={<ComputerCompare />} />
+        <Route path="/productdetails" element={<ProductDetails />} />
+        
       </Route>
     </Routes>
   </BrowserRouter>
