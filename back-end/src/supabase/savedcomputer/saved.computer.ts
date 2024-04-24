@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Query } from '@nestjs/common';
 import { SavedComputerService } from './savedcomputer.service';
 import { createSavedComputerDto } from './dto/create-savedcomputer.dto';
 
@@ -17,7 +17,7 @@ export class SavedComputerController {
 
     @Get()
     async getSavedComputers(
-        @Body('user_id') user_id: string,
+        @Query('user_id') user_id: string,
     ): Promise<any> {
         console.log(`controller, user_id: ${user_id}`);
         return this.savedComputerService.getSavedComputers(parseInt(user_id));
@@ -25,9 +25,10 @@ export class SavedComputerController {
 
     @Delete()
     async deleteComputer(
-        @Body('user_id') user_id: number,
-        @Body('computer_id') computer_id: string
+        @Query('user_id') user_id: string,
+        @Query('computer_id') computer_id: string
     ): Promise<any> {
-        return this.savedComputerService.deleteSavedComputer(user_id, computer_id);
+        console.log(`controller, user_id: ${user_id}, computer_id: ${computer_id}`);
+        return this.savedComputerService.deleteSavedComputer(parseInt(user_id), computer_id);
     }
 }

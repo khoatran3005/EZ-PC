@@ -32,7 +32,7 @@ export class SavedComputerService {
         }
     }
 
-    async getSavedComputers(user_id): Promise<any> {
+    async getSavedComputers(user_id: number): Promise<any> {
         console.log(`getSavedComputers(user_id: ${user_id})`);
 
         // Get user's computer_ids from savedComputer
@@ -64,7 +64,7 @@ export class SavedComputerService {
         return computerData;
     }
 
-    async deleteSavedComputer(user_id, computer_id): Promise<void> {
+    async deleteSavedComputer(user_id: number, computer_id): Promise<void> {
         const { data, error } = await this.supabase
             .from('savedcomputer')
             .delete()
