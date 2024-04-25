@@ -27,8 +27,10 @@ export class ComputerController {
     }
 
     @Get('compare')
-    async get(@Body('computer_id_1') computer_id_1: string,
-        @Body('computer_id_2') computer_id_2: string): Promise<any[]> {
+    async get(
+        @Query('computer_id_1') computer_id_1: string,
+        @Query('computer_id_2') computer_id_2: string): Promise<any[]> {
+        console.log("testing: " + computer_id_1 + " " + computer_id_2);
         return this.computerService.compareComputer(computer_id_1, computer_id_2);
     }
 

@@ -50,17 +50,15 @@ const Login = () => {
             email: email,
             password: password,
         };
-        console.log(userData); // Remove in final, insecure, prints p/w in console ---------------------
+
         try {
             const response = await axios.post('http://localhost:3000/users/login', userData);
             console.log('Response recieved from server.')
             if (response.status >= 200 && response.status < 300) {
                 console.log(response.data);
                 setUser(response.data); // Set the user context to the response data
-                alert(`pause for debug purposes`) // remove ---------------------
                 console.log(`Successfully logged in as: ${response.data.name}`);
-                toast.success(`Welcome back, ${response.data.name}!`, { autoClose: 2000 }); // Send log-in success notif
-                setTimeout(() => navigate('/'), 2500); // Redirect Home in 2.5s
+                toast.success(`Welcome back, ${response.data.name}!`, { autoClose: 2000 }); // Send log-in success notification
             } else {
                 console.error('Log-In failed: Server issue.');
                 toast.error('Log-In failed: Server issue.');

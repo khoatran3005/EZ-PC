@@ -14,6 +14,8 @@ import Homepage from './components/Home/Homepage';
 import Info from './components/Input/Info';
 import Suggestions from './components/Suggestions/Suggest';
 import SavedList from './components/savedComp/savedList';
+import ComputerCompare from "./components/productCompare/ComputerCompare";
+import ProductDetails from "./components/Details/ProductDetails";
 import { UserContext } from './contexts/UserContext';
 
 
@@ -33,6 +35,9 @@ function AppWrapper() {
             <Route path="/info" element={<Info />} />
             <Route path="/saved" element={<SavedList />} />
             <Route path="/suggest" element={<Suggestions />} />
+            <Route path="/computercompare" element={<ComputerCompare />} />
+            <Route path="/productdetails" element={<ProductDetails />} />
+
 
           </Route>
         </Routes>

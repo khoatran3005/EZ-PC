@@ -120,7 +120,7 @@ const SavedList = () => {
 
   return (
     <div className="Scontainer" style={{ minHeight: '200vh', maxHeight: '5000vh', width: '1520px', background: 'linear-gradient(45deg, rgba(29, 236, 197, 0.7), rgba(91, 14, 214, 0.7) 100%)', marginTop: '0', paddingTop: '5px' }}>
-      <div className="Sug"><p >Here are personalized laptop recommendations tailored just for you:</p></div>
+      <div className="Sug"><p >Saved Computers:</p></div>
       <div className="d-flex justify-content-center row">
         <div className="col-md-10">
           {currentItems.map(computer => (
